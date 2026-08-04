@@ -78,12 +78,24 @@ export async function fetchPageSpeed(url: string): Promise<ScanScores | null> {
 export async function summariseWithAi(
   displayUrl: string,
   scores: ScanScores,
+  snapshot: PageSnapshot | null,
 ): Promise<Record<ScanCard["id"], string | undefined> | null> {
   const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) return null;
 
   const prompt = `Website: ${displayUrl}
 Lighthouse-scores (0-100, mobiel): performance ${scores.performance ?? "onbekend"}, SEO ${scores.seo ?? "onbekend"}, toegankelijkheid ${scores.accessibility ?? "onbekend"}, best practices ${scores.bestPractices ?? "onbekend"}.
+${
+  snapshot
+    ? `Paginatitel: ${snapshot.title || "ontbreekt"}
+Meta-omschrijving: ${snapshot.description || "ontbreekt"}
+H1-koppen: ${snapshot.headings.join(" / ") || "geen"}
+Mobiele viewport ingesteld: ${snapshot.hasViewport ? "ja" : "nee"}
+Aantal woorden op de homepage: ${snapshot.wordCount}
+Aantal afbeeldingen zonder alt-tekst: ${snapshot.imagesWithoutAlt}
+Tekstfragment: ${snapshot.excerpt}`
+    : "Er kon geen live paginainhoud worden opgehaald."
+}
 
 Schrijf voor een Nederlands webdesignbureau drie korte, positief-kritische observaties voor de eigenaar van deze website. Niet technisch, geen jargon, geen verkooppraatje. Maximaal 30 woorden per observatie. Onderwerpen: design (uitstraling en overtuigingskracht), vindbaarheid (Google en AI-platformen zoals ChatGPT), conversie (structuur en call-to-actions).`;
 
@@ -166,9 +178,14 @@ export async function buildScanResult(raw: string): Promise<ScanResult> {
     };
   }
 
-  const scores = (await fetchPageSpeed(normalized.url)) ?? emptyScores;
-  const measured = Object.values(scores).some((value) => value !== null);
-  const ai = measured ? await summariseWithAi(normalized.displayUrl, scores) : null;
+  const [psi, snapshot] = await Promise.all([
+    fetchPageSpeed(normalized.url),
+    fetchPageSnapshot(normalized.url),
+  ]);
+  const scores = psi ?? emptyScores;
+  const hasScores = Object.values(scores).some((value) => value !== null);
+  const measured = hasScores || snapshot !== null;
+  const ai = measured ? await summariseWithAi(normalized.displayUrl, scores, snapshot) : null;
 
   const cards: ScanCard[] = FALLBACK_CARDS.map((card) => ({
     ...card,
@@ -187,8 +204,10 @@ export async function buildScanResult(raw: string): Promise<ScanResult> {
     measured,
     scores,
     cards,
-    note: measured
+    note: hasScores
       ? "Gemeten met Google Lighthouse en aangevuld met een AI-analyse van jouw website."
-      : "We konden jouw website nu niet live meten, dus dit is een eerste indruk op basis van ervaring.",
+      : measured
+        ? "Op basis van een live AI-analyse van jouw website."
+        : "We konden jouw website nu niet live bekijken, dus dit is een eerste indruk op basis van ervaring.",
   };
 }
