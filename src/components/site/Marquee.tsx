@@ -1,4 +1,4 @@
-export function Marquee({ items }: { items: string[] }) {
+export function Marquee({ items, className }: { items: string[]; className?: string }) {
   const row = [...items, ...items];
   return (
     <div className="relative flex overflow-hidden py-6" aria-hidden="true">
@@ -6,7 +6,7 @@ export function Marquee({ items }: { items: string[] }) {
         {row.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="display text-2xl whitespace-nowrap text-ink/35 sm:text-3xl"
+            className={className ?? "display text-2xl whitespace-nowrap text-ink/35 sm:text-3xl"}
           >
             {item}
           </span>
@@ -15,3 +15,4 @@ export function Marquee({ items }: { items: string[] }) {
     </div>
   );
 }
+
