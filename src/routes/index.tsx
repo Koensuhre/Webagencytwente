@@ -199,7 +199,7 @@ function WhySection() {
 function ProcessSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["2%", "-64%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["2%", "-58%"]);
 
   return (
     <section aria-labelledby="proces">
