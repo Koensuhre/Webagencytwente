@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import { Magnetic } from "./motion-primitives";
+import { StatementSlider } from "./StatementSlider";
+
 
 const nav = [
   { to: "/diensten", label: "Diensten" },
