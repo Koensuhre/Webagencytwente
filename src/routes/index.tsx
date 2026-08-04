@@ -85,7 +85,7 @@ function ServicesSection() {
   return (
     <section className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 sm:py-36" aria-labelledby="diensten">
       <div className="grid gap-6 sm:grid-cols-2 sm:items-end">
-        <h2 id="diensten" className="display text-[13vw] leading-[0.84] sm:text-[6.5vw]">
+        <h2 id="diensten" className="display display-1">
           <RevealLines lines={["Wat wij", "doen"]} />
         </h2>
         <Reveal delay={0.1}>
@@ -124,7 +124,7 @@ function WorkSection() {
   return (
     <section className="bg-ink py-24 text-ink-foreground sm:py-36" aria-labelledby="werk">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <h2 id="werk" className="display text-[13vw] leading-[0.84] sm:text-[6.5vw]">
+        <h2 id="werk" className="display display-1">
           <RevealLines lines={["Uitgelicht", "werk"]} />
         </h2>
 
@@ -179,7 +179,7 @@ function WhySection() {
   return (
     <section className="bg-secondary px-5 py-24 text-secondary-foreground sm:px-8 sm:py-36" aria-labelledby="waarom">
       <div className="mx-auto max-w-[1400px]">
-        <h2 id="waarom" className="display max-w-4xl text-[11vw] leading-[0.86] sm:text-[5.5vw]">
+        <h2 id="waarom" className="display max-w-4xl display-1">
           <RevealLines lines={["Klein team.", "Grote uitvoering."]} />
         </h2>
         <p className="mt-8 max-w-xl text-lg text-secondary-foreground/80">
@@ -210,7 +210,7 @@ function ProcessSection() {
   return (
     <section aria-labelledby="proces">
       <div className="mx-auto max-w-[1400px] px-5 pt-24 sm:px-8 sm:pt-36">
-        <h2 id="proces" className="display text-[13vw] leading-[0.84] sm:text-[6.5vw]">
+        <h2 id="proces" className="display display-1">
           <RevealLines lines={["Zo werken", "we"]} />
         </h2>
       </div>
@@ -252,7 +252,7 @@ function ProcessSection() {
 function TestimonialsSection() {
   return (
     <section className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 sm:py-36" aria-labelledby="klanten">
-      <h2 id="klanten" className="display text-[13vw] leading-[0.84] sm:text-[6.5vw]">
+      <h2 id="klanten" className="display display-1">
         <RevealLines lines={["Wat klanten", "zeggen"]} />
       </h2>
       <div className="mt-14 grid gap-6 lg:grid-cols-3">
@@ -278,7 +278,7 @@ function FaqSection() {
   return (
     <section className="mx-auto max-w-[1400px] px-5 pb-24 sm:px-8 sm:pb-36" aria-labelledby="faq">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-        <h2 id="faq" className="display text-[13vw] leading-[0.84] sm:text-[6.5vw]">
+        <h2 id="faq" className="display display-1">
           <RevealLines lines={["Veel", "gevraagd"]} />
         </h2>
         <Accordion type="single" collapsible className="w-full">

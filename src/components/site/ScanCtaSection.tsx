@@ -23,7 +23,7 @@ export function ScanCtaSection() {
       />
 
       <div className="relative mx-auto max-w-[1100px] text-center">
-        <h2 id="scan-cta" className="display text-[12vw] leading-[0.86] sm:text-[6vw]">
+        <h2 id="scan-cta" className="display display-1">
           <RevealLines lines={["Benieuwd hoe jouw", "website ervoor staat?"]} />
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">

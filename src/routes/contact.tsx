@@ -67,7 +67,7 @@ function ContactPage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-[1400px] px-5 pt-36 pb-24 sm:px-8 sm:pt-48 sm:pb-36">
-        <h1 className="display text-[14vw] leading-[0.84] sm:text-[8vw]">
+        <h1 className="display display-hero">
           <RevealLines lines={["Vertel ons", "over je plan"]} />
         </h1>
 

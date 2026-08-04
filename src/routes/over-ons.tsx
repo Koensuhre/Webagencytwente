@@ -27,7 +27,7 @@ function AboutPage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-[1400px] px-5 pt-36 pb-16 sm:px-8 sm:pt-48">
-        <h1 className="display text-[14vw] leading-[0.84] sm:text-[8vw]">
+        <h1 className="display display-hero">
           <RevealLines lines={["Wij zijn", "Web Agency", "Twente"]} />
         </h1>
       </section>
@@ -68,7 +68,7 @@ function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 sm:py-32">
-        <h2 className="display text-[12vw] leading-[0.84] sm:text-[6vw]">
+        <h2 className="display display-1">
           <RevealLines lines={["Onze aanpak"]} />
         </h2>
         <ol className="mt-12 grid gap-4 md:grid-cols-2">

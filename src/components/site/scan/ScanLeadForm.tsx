@@ -70,7 +70,7 @@ export function ScanLeadForm({
         <div className="grain-blob floaty pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-primary/50" />
         <div className="relative grid gap-12 lg:grid-cols-[1fr_1.15fr]">
           <div>
-            <h2 id="scan-advies" className="display text-[10vw] leading-[0.88] sm:text-[3.6vw]">
+            <h2 id="scan-advies" className="display display-2">
               Wij hebben nu al ideeën voor jouw website.
             </h2>
             <p className="mt-6 max-w-md text-lg text-ink-foreground/75">
@@ -209,7 +209,7 @@ function ScanSuccess() {
       >
         ✓
       </motion.span>
-      <h2 className="display mt-10 text-[11vw] leading-[0.88] sm:text-[4.5vw]">
+      <h2 className="display mt-10 display-2">
         Top! Wij gaan met jouw website aan de slag.
       </h2>
       <p className="mt-6 max-w-xl text-lg text-muted-foreground">

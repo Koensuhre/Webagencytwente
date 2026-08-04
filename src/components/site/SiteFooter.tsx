@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="bg-ink text-ink-foreground">
       <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-24">
         <Reveal>
-          <p className="display text-[13vw] leading-[0.82] sm:text-[9vw]">
+          <p className="display display-hero">
             Laten we
             <span className="text-primary"> bouwen</span>
           </p>

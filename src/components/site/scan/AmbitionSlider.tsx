@@ -16,7 +16,7 @@ export function AmbitionSlider({
       className="mx-auto mt-24 max-w-[1200px] px-5 sm:mt-36 sm:px-8"
       aria-labelledby="scan-ambitie"
     >
-      <h2 id="scan-ambitie" className="display text-[11vw] leading-[0.86] sm:text-[5vw]">
+      <h2 id="scan-ambitie" className="display display-1">
         Waar wil jij naartoe groeien?
       </h2>
 
