@@ -20,10 +20,10 @@ export function SiteFooter() {
               href="mailto:hallo@webagencytwente.nl"
               className="mt-2 block text-lg font-semibold hover:text-primary"
             >
-              hallo@webagencytwente.nl
+              info@webagencytwente.nl
             </a>
             <a href="tel:+31612345678" className="mt-1 block text-lg font-semibold hover:text-primary">
-              +31 6 12 34 56 78
+              +31 6 23 81 62 97
             </a>
           </div>
           <div>
@@ -54,7 +54,7 @@ export function SiteFooter() {
         </div>
 
         <p className="mt-8 sm:mt-12 text-xs text-ink-foreground/50">
-          &copy; {new Date().getFullYear()} Web Agency Twente &mdash; KvK 00000000
+          &copy; {new Date().getFullYear()} Web Agency Twente &mdash; KvK 97451584
         </p>
       </div>
     </footer>
