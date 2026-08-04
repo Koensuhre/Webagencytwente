@@ -201,8 +201,8 @@
 @theme inline {
   --color-ink: var(--ink);
   --color-ink-foreground: var(--ink-foreground);
-  --font-display: "Anton", ui-sans-serif, sans-serif;
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Anton", "Anton Fallback", ui-sans-serif, sans-serif;
+  --font-sans: "Space Grotesk", "Space Grotesk Fallback", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
