@@ -209,7 +209,7 @@ function ProcessSection() {
 
   return (
     <section aria-labelledby="proces">
-      <div className="mx-auto max-w-[1400px] px-5 pt-24 sm:px-8 sm:pt-36">
+      <div className="mx-auto max-w-[1400px] px-5 pt-16 sm:px-8 sm:pt-28 lg:pt-36">
         <h2 id="proces" className="display display-1">
           <RevealLines lines={["Zo werken", "we"]} />
         </h2>

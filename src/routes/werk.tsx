@@ -27,7 +27,7 @@ export const Route = createFileRoute("/werk")({
 function WorkPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[1400px] px-5 pt-36 pb-16 sm:px-8 sm:pt-48">
+      <section className="mx-auto max-w-[1400px] px-5 pt-28 pb-12 sm:px-8 sm:pt-40 sm:pb-16 lg:pt-48">
         <h1 className="display display-hero">
           <RevealLines lines={["Ons werk"]} />
         </h1>
