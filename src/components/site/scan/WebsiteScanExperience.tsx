@@ -57,7 +57,7 @@ export function WebsiteScanExperience() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="pt-26 sm:pt-36 lg:pt-44"
+          className="pt-36 sm:pt-36 lg:pt-44"
         >
           <ScanResults cards={result.cards} note={result.note} displayUrl={result.displayUrl} />
           <AmbitionSlider index={ambitionIndex} onChange={setAmbitionIndex} />

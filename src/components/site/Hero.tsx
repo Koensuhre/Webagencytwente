@@ -17,7 +17,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[88svh] items-end overflow-hidden pt-32 pb-14 sm:min-h-dvh sm:pt-28 sm:pb-12"
+      className="relative flex min-h-[88svh] items-end overflow-hidden pt-36 pb-14 sm:min-h-dvh sm:pt-28 sm:pb-12"
       onPointerMove={(event) => {
         if (event.pointerType !== "mouse") return;
         mx.set(event.clientX / window.innerWidth - 0.5);
