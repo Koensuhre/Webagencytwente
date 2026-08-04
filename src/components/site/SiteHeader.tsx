@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import { Magnetic } from "./motion-primitives";
@@ -15,6 +15,7 @@ const nav = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -22,6 +23,19 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Close the mobile menu on navigation.
+  useEffect(() => setOpen(false), [pathname]);
+
+  // Lock background scrolling while the mobile menu is open.
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
 
   return (
     <header
@@ -31,14 +45,14 @@ export function SiteHeader() {
     >
       <StatementSlider />
       <div
-        className={`mx-auto flex max-w-[1400px] items-center justify-between px-5 transition-all duration-500 sm:px-8 ${
-          scrolled ? "py-3" : "py-5"
+        className={`mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-5 transition-all duration-500 sm:px-8 ${
+          scrolled ? "py-3" : "py-4 sm:py-5"
         }`}
       >
 
-        <Link to="/" className="group flex items-center gap-2" aria-label="Naar de homepage">
-          <span className="block h-3 w-3 rounded-full bg-primary transition-transform duration-300 group-hover:scale-150" />
-          <span className="display text-lg leading-none tracking-tight sm:text-xl">
+        <Link to="/" className="group flex min-w-0 items-center gap-2" aria-label="Naar de homepage">
+          <span className="block h-3 w-3 shrink-0 rounded-full bg-primary transition-transform duration-300 group-hover:scale-150" />
+          <span className="display truncate text-base leading-none tracking-tight sm:text-xl">
             Web Agency
             <span className="text-primary"> Twente</span>
           </span>
@@ -70,7 +84,7 @@ export function SiteHeader() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? "Menu sluiten" : "Menu openen"}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-ink-foreground md:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ink-foreground md:hidden"
         >
           <span className="relative block h-3 w-5">
             <span
@@ -88,14 +102,14 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="mx-4 mb-4 rounded-2xl border border-ink/10 bg-background/95 p-5 shadow-xl backdrop-blur-xl md:hidden">
-          <nav className="flex flex-col gap-1" aria-label="Mobiel menu">
+        <div className="mx-4 mb-4 max-h-[calc(100dvh-9rem)] overflow-y-auto overscroll-contain rounded-2xl border border-ink/10 bg-background/95 p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-xl backdrop-blur-xl md:hidden">
+          <nav className="flex flex-col" aria-label="Mobiel menu">
             {[...nav, { to: "/contact", label: "Contact" } as const].map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="display py-2 text-3xl"
+                className="display border-b border-ink/10 py-3.5 text-3xl last:border-0"
                 activeProps={{ className: "text-primary" }}
               >
                 {item.label}

@@ -28,7 +28,7 @@ function WorkPage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-[1400px] px-5 pt-36 pb-16 sm:px-8 sm:pt-48">
-        <h1 className="display text-[15vw] leading-[0.84] sm:text-[9vw]">
+        <h1 className="display display-hero">
           <RevealLines lines={["Ons werk"]} />
         </h1>
         <Reveal delay={0.1}>

@@ -33,13 +33,13 @@ export function ScanProgress({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -24 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto flex min-h-[78vh] max-w-[900px] flex-col justify-center px-5 py-24 sm:px-8"
+      className="mx-auto flex min-h-[80svh] max-w-[900px] flex-col justify-center px-5 pt-36 pb-20 sm:px-8 sm:pt-44 sm:pb-24"
       aria-labelledby="scan-progress-titel"
     >
       <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase">
         Bezig met scannen
       </p>
-      <h2 id="scan-progress-titel" className="display mt-4 text-[10vw] leading-[0.88] sm:text-[4.5vw]">
+      <h2 id="scan-progress-titel" className="display display-2 mt-4 break-words">
         {displayUrl}
       </h2>
 
@@ -67,14 +67,14 @@ export function ScanProgress({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-center gap-4 border-b border-ink/10 py-4 text-lg"
+              className="flex items-center gap-3 border-b border-ink/10 py-3.5 text-base sm:gap-4 sm:py-4 sm:text-lg"
             >
               <motion.span
                 aria-hidden="true"
                 initial={{ scale: 0.4, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 380, damping: 18 }}
-                className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
               >
                 ✓
               </motion.span>

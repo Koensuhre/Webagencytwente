@@ -148,6 +148,8 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -155,12 +157,57 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    overflow-wrap: break-word;
+  }
+
+  /* Touch-friendly range slider */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 9999px;
+    background: var(--primary);
+    border: 3px solid var(--card);
+    box-shadow: 0 2px 10px oklch(0 0 0 / 0.18);
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    height: 1.6rem;
+    width: 1.6rem;
+    border-radius: 9999px;
+    background: var(--primary);
+    border: 3px solid var(--card);
+    cursor: pointer;
   }
 
   ::selection {
     background-color: var(--primary);
     color: var(--primary-foreground);
   }
+}
+
+/* Fluid display sizes: scale smoothly from small phones to large desktops. */
+@utility display-hero {
+  font-size: clamp(3rem, 13vw, 9.5rem);
+  line-height: 0.84;
+}
+
+@utility display-1 {
+  font-size: clamp(2.5rem, 10.5vw, 6.5rem);
+  line-height: 0.86;
+}
+
+@utility display-2 {
+  font-size: clamp(2rem, 7.5vw, 4.25rem);
+  line-height: 0.9;
+}
+
+@utility safe-x {
+  padding-left: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
 }
 
 @utility display {
@@ -178,6 +225,18 @@
 @utility grain-blob {
   filter: blur(60px);
   will-change: transform;
+}
+
+/* Heavy blur is expensive on phones — soften it and drop the idle animation. */
+@media (max-width: 640px) {
+  .grain-blob {
+    filter: blur(38px);
+    will-change: auto;
+  }
+
+  .grain-blob.floaty {
+    animation: none;
+  }
 }
 
 @keyframes marquee {

@@ -63,23 +63,23 @@ export function ScanLeadForm({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto mt-24 max-w-[1200px] px-5 pb-28 sm:mt-36 sm:px-8"
+      className="mx-auto mt-20 max-w-[1200px] px-5 pb-24 sm:mt-36 sm:px-8 sm:pb-28"
       aria-labelledby="scan-advies"
     >
-      <div className="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-12 text-ink-foreground sm:px-14 sm:py-16">
+      <div className="relative overflow-hidden rounded-[1.75rem] bg-ink px-5 py-10 text-ink-foreground sm:rounded-[2rem] sm:px-14 sm:py-16">
         <div className="grain-blob floaty pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-primary/50" />
-        <div className="relative grid gap-12 lg:grid-cols-[1fr_1.15fr]">
+        <div className="relative grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
           <div>
-            <h2 id="scan-advies" className="display text-[10vw] leading-[0.88] sm:text-[3.6vw]">
+            <h2 id="scan-advies" className="display display-2">
               Wij hebben nu al ideeën voor jouw website.
             </h2>
-            <p className="mt-6 max-w-md text-lg text-ink-foreground/75">
+            <p className="mt-6 max-w-md text-base text-ink-foreground/75 sm:text-lg">
               Laat hieronder je gegevens achter. We nemen persoonlijk contact met je op en laten zien
               welke verbeteringen wij als eerste zouden doorvoeren.
             </p>
           </div>
 
-          <form onSubmit={onSubmit} noValidate className="grid gap-5 sm:grid-cols-2">
+          <form onSubmit={onSubmit} noValidate className="grid gap-4 sm:grid-cols-2 sm:gap-5">
             <Field label="Naam" name="name" autoComplete="name" error={errors.name} />
             <Field
               label="Bedrijfsnaam"
@@ -92,12 +92,14 @@ export function ScanLeadForm({
               name="email"
               type="email"
               autoComplete="email"
+              inputMode="email"
               error={errors.email}
             />
             <Field
               label="Website"
               name="website"
               autoComplete="url"
+              inputMode="url"
               defaultValue={defaultWebsite}
               error={errors.website}
             />
@@ -138,6 +140,7 @@ function Field({
   name,
   type = "text",
   autoComplete,
+  inputMode,
   defaultValue,
   error,
   textarea = false,
@@ -147,6 +150,7 @@ function Field({
   name: FieldKey;
   type?: string;
   autoComplete?: string | undefined;
+  inputMode?: "email" | "url" | "text" | undefined;
   defaultValue?: string | undefined;
   error?: string | undefined;
   textarea?: boolean;
@@ -154,7 +158,7 @@ function Field({
 }) {
   const id = `scan-${name}`;
   const shared =
-    "mt-2 w-full rounded-2xl border border-ink-foreground/20 bg-ink-foreground/5 px-5 py-3.5 text-base text-ink-foreground outline-none transition-all duration-300 placeholder:text-ink-foreground/40 focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/30";
+    "mt-2 w-full min-w-0 rounded-2xl border border-ink-foreground/20 bg-ink-foreground/5 px-4 py-3.5 text-base text-ink-foreground outline-none transition-all duration-300 placeholder:text-ink-foreground/40 focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/30 sm:px-5";
 
   return (
     <div className={className}>
@@ -176,6 +180,8 @@ function Field({
           name={name}
           type={type}
           autoComplete={autoComplete}
+          inputMode={inputMode}
+          autoCapitalize={inputMode === "email" || inputMode === "url" ? "none" : undefined}
           defaultValue={defaultValue}
           className={shared}
           aria-invalid={error ? true : undefined}
@@ -209,7 +215,7 @@ function ScanSuccess() {
       >
         ✓
       </motion.span>
-      <h2 className="display mt-10 text-[11vw] leading-[0.88] sm:text-[4.5vw]">
+      <h2 className="display mt-10 display-2">
         Top! Wij gaan met jouw website aan de slag.
       </h2>
       <p className="mt-6 max-w-xl text-lg text-muted-foreground">

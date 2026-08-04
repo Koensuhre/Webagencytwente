@@ -7,7 +7,7 @@ export function CtaSection() {
     <section className="relative overflow-hidden bg-accent px-5 py-24 text-accent-foreground sm:px-8 sm:py-36">
       <div className="grain-blob floaty pointer-events-none absolute -top-32 -right-20 h-96 w-96 rounded-full bg-primary/60" />
       <div className="relative mx-auto max-w-[1400px]">
-        <h2 className="display text-[14vw] leading-[0.84] sm:text-[8vw]">
+        <h2 className="display display-hero">
           <RevealLines lines={["Klaar voor iets", "spectaculairs?"]} />
         </h2>
         <p className="mt-8 max-w-md text-lg text-accent-foreground/80">
