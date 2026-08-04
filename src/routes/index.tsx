@@ -12,8 +12,8 @@ import { CtaSection } from "@/components/site/CtaSection";
 import { Hero } from "@/components/site/Hero";
 import { Marquee } from "@/components/site/Marquee";
 import { PageShell } from "@/components/site/PageShell";
-import { StatementSlider } from "@/components/site/StatementSlider";
 import { Counter, Magnetic, Reveal, RevealLines } from "@/components/site/motion-primitives";
+
 import { clients, faqs, processSteps, projects, services, stats, testimonials } from "@/lib/site-data";
 
 
@@ -66,8 +66,6 @@ function HomePage() {
         <Marquee items={clients} />
       </section>
 
-      <StatementSlider />
-
       <ServicesSection />
       <WorkSection />
       <WhySection />
@@ -78,6 +76,7 @@ function HomePage() {
     </PageShell>
   );
 }
+
 
 
 function ServicesSection() {

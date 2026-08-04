@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import { Magnetic } from "./motion-primitives";
+import { StatementSlider } from "./StatementSlider";
+
 
 const nav = [
   { to: "/diensten", label: "Diensten" },
@@ -26,11 +28,13 @@ export function SiteHeader() {
         scrolled ? "backdrop-blur-xl" : ""
       }`}
     >
+      <StatementSlider />
       <div
         className={`mx-auto flex max-w-[1400px] items-center justify-between px-5 transition-all duration-500 sm:px-8 ${
           scrolled ? "py-3" : "py-5"
         }`}
       >
+
         <Link to="/" className="group flex items-center gap-2" aria-label="Naar de homepage">
           <span className="block h-3 w-3 rounded-full bg-primary transition-transform duration-300 group-hover:scale-150" />
           <span className="display text-lg leading-none tracking-tight sm:text-xl">
