@@ -19,13 +19,13 @@ export function ScanResults({
         transition={{ duration: 0.5 }}
         className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase"
       >
-        Eerste indruk van {displayUrl}
+        <span className="break-words">Eerste indruk van {displayUrl}</span>
       </motion.p>
-      <h2 id="scan-resultaten" className="display mt-4 text-[11vw] leading-[0.86] sm:text-[5vw]">
+      <h2 id="scan-resultaten" className="display display-1 mt-4">
         Dit valt ons op.
       </h2>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 lg:grid-cols-3">
         {cards.map((card, index) => (
           <motion.article
             key={card.id}
@@ -33,12 +33,12 @@ export function ScanResults({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ y: -8 }}
-            className="flex h-full flex-col rounded-3xl border border-ink/15 bg-card p-8"
+            className="flex h-full flex-col rounded-3xl border border-ink/15 bg-card p-6 sm:p-8"
           >
             <span className="text-3xl" aria-hidden="true">
               {card.emoji}
             </span>
-            <h3 className="display mt-4 text-3xl">{card.title}</h3>
+            <h3 className="display mt-4 text-2xl sm:text-3xl">{card.title}</h3>
             {typeof card.score === "number" ? (
               <div className="mt-5">
                 <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink/10">
@@ -54,7 +54,9 @@ export function ScanResults({
                 </p>
               </div>
             ) : null}
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{card.text}</p>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {card.text}
+            </p>
           </motion.article>
         ))}
       </div>

@@ -17,7 +17,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex min-h-dvh items-end overflow-hidden pt-28 pb-12"
+      className="relative flex min-h-[88svh] items-end overflow-hidden pt-32 pb-14 sm:min-h-dvh sm:pt-28 sm:pb-12"
       onPointerMove={(event) => {
         if (event.pointerType !== "mouse") return;
         mx.set(event.clientX / window.innerWidth - 0.5);
@@ -50,7 +50,7 @@ export function Hero() {
           Digital agency uit Twente
         </motion.p>
 
-        <h1 className="display text-[15.5vw] leading-[0.82] sm:text-[11vw]">
+        <h1 className="display display-hero">
           <RevealLines lines={["Wij bouwen", "websites die"]} delay={0.1} />
           <span className="block overflow-hidden pb-[0.06em]">
             <motion.span
@@ -64,15 +64,15 @@ export function Hero() {
           </span>
         </h1>
 
-        <div className="mt-10 flex flex-col gap-8 border-t border-ink/15 pt-8 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-md text-lg text-muted-foreground">
+        <div className="mt-10 flex flex-col gap-7 border-t border-ink/15 pt-8 sm:flex-row sm:items-end sm:justify-between">
+          <p className="max-w-md text-base text-muted-foreground sm:text-lg">
             Design, development en merk. Wij maken digitale ervaringen voor ondernemers die niet in
             de massa willen verdwijnen.
           </p>
-          <Magnetic strength={0.4}>
+          <Magnetic strength={0.4} className="w-full sm:w-auto">
             <Link
               to="/website-scan"
-              className="inline-flex items-center gap-3 rounded-full bg-ink px-8 py-4 text-base font-semibold text-ink-foreground transition-colors hover:bg-primary"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-ink px-8 py-4 text-base font-semibold text-ink-foreground transition-colors hover:bg-primary sm:w-auto"
             >
               Doe de gratis website scan
               <span aria-hidden="true">&rarr;</span>

@@ -14,13 +14,13 @@ export function ScanIntro({ onStart }: { onStart: (query: string) => void }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -24 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto flex min-h-[78vh] max-w-[1100px] flex-col justify-center px-5 py-24 sm:px-8"
+      className="mx-auto flex min-h-[80svh] max-w-[1100px] flex-col justify-center px-5 pt-36 pb-20 sm:px-8 sm:pt-44 sm:pb-24"
       aria-labelledby="scan-intro-titel"
     >
-      <h1 id="scan-intro-titel" className="display text-[12vw] leading-[0.86] sm:text-[6vw]">
+      <h1 id="scan-intro-titel" className="display display-1">
         <RevealLines lines={["Laten we alvast met", "jouw website meekijken."]} />
       </h1>
-      <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+      <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
         Vul jouw website of bedrijfsnaam in.
       </p>
 
@@ -40,25 +40,27 @@ export function ScanIntro({ onStart }: { onStart: (query: string) => void }) {
         <label htmlFor="scan-query" className="sr-only">
           Jouw website of bedrijfsnaam
         </label>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <input
             id="scan-query"
             name="query"
             autoComplete="url"
-            autoFocus
+            inputMode="url"
+            autoCapitalize="none"
+            autoCorrect="off"
             value={value}
             onChange={(event) => setValue(event.target.value)}
             placeholder="bijvoorbeeld: webagencytwente.nl"
             aria-invalid={error ? true : undefined}
             aria-describedby={error ? "scan-query-fout" : undefined}
-            className="w-full rounded-full border border-ink/15 bg-card px-7 py-5 text-xl outline-none transition-all duration-300 placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/20 sm:text-2xl"
+            className="w-full min-w-0 rounded-full border border-ink/15 bg-card px-5 py-4 text-base outline-none transition-all duration-300 placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/20 sm:px-7 sm:py-5 sm:text-2xl"
           />
           <motion.button
             type="submit"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 320, damping: 20 }}
-            className="inline-flex shrink-0 items-center justify-center gap-3 rounded-full bg-ink px-8 py-5 text-base font-semibold text-ink-foreground transition-colors hover:bg-primary focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
+            className="inline-flex w-full shrink-0 items-center justify-center gap-3 rounded-full bg-ink px-8 py-4 text-base font-semibold text-ink-foreground transition-colors hover:bg-primary focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none sm:w-auto sm:py-5"
           >
             Start scan
             <span aria-hidden="true">&rarr;</span>
