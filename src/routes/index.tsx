@@ -68,13 +68,13 @@ function HomePage() {
       </section>
 
       <ServicesSection />
+      <ScanCtaSection />
       <WorkSection />
       <WhySection />
       <ProcessSection />
       <TestimonialsSection />
       <FaqSection />
       <CtaSection />
-      <ScanCtaSection />
     </PageShell>
   );
 }

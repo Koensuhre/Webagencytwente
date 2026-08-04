@@ -8,6 +8,7 @@ import { StatementSlider } from "./StatementSlider";
 const nav = [
   { to: "/diensten", label: "Diensten" },
   { to: "/werk", label: "Werk" },
+  { to: "/website-scan", label: "Website scan" },
   { to: "/over-ons", label: "Over ons" },
 ] as const;
 
