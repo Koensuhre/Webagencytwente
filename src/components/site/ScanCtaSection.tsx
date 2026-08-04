@@ -6,7 +6,7 @@ import { Magnetic, RevealLines } from "./motion-primitives";
 export function ScanCtaSection() {
   return (
     <section
-      className="relative overflow-hidden border-t border-ink/10 bg-background px-5 py-28 sm:px-8 sm:py-40"
+      className="relative overflow-hidden border-t border-ink/10 bg-background px-5 py-16 sm:px-8 sm:py-28 lg:py-40"
       aria-labelledby="scan-cta"
     >
       <motion.div
