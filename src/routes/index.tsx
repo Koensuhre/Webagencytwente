@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Web Agency Twente — Websites die je onthoudt" },
       {
         property: "og:description",
-        content: "Digital agency uit Twente voor web design, development, branding en SEO.",
+        content: "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk.",
       },
       { property: "og:url", content: "/" },
     ],

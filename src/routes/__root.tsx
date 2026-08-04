@@ -81,12 +81,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Digital agency uit Twente voor web design, development, branding en SEO. Wij bouwen websites die opvallen en presteren.",
+          "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk.",
       },
       { name: "author", content: "Web Agency Twente" },
       { property: "og:site_name", content: "Web Agency Twente" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Web Agency Twente — Websites die je onthoudt" },
+      { name: "twitter:title", content: "Web Agency Twente — Websites die je onthoudt" },
+      { property: "og:description", content: "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk." },
+      { name: "twitter:description", content: "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0faec0a-139b-492e-8a74-86c49a0194ed" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0faec0a-139b-492e-8a74-86c49a0194ed" },
     ],
     links: [
       {
