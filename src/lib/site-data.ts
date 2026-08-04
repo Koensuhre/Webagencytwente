@@ -104,7 +104,7 @@ export const testimonials = [
 ];
 
 export const faqs = [
-  { q: "Wat kost een website?", a: "Een complete site begint bij ongeveer 3.500 euro. Merk, webshop of maatwerk loopt hoger op. Na het kennismakingsgesprek krijgen jullie een vaste prijs, geen open eind." },
+  { q: "Wat kost een website?", a: "Een complete site begint bij ongeveer 3.500 euro. Terwijl een kleine starterswebsite al vanaf 500 euro te realiseren is. Merk, webshop of maatwerk loopt hoger op. Na het kennismakingsgesprek krijgen jullie een vaste prijs, geen open eind. Doe ook onze gratis website scan om erachter te komen wat bij jou past!" },
   { q: "Hoe lang duurt het?", a: "Een landingspagina in twee weken, een volledige website meestal in vier tot zes weken. Snel kan, mits we samen snel beslissen." },
   { q: "Werken jullie alleen in Twente?", a: "We zitten in Twente en werken daar het liefst, maar onze klanten zitten door heel Nederland. Alles kan ook op afstand." },
   { q: "Kunnen we zelf teksten en pagina's aanpassen?", a: "Ja. We leveren een eenvoudig CMS op en nemen jullie mee in hoe het werkt. Liever uit handen? Dan doen wij het onderhoud." },
