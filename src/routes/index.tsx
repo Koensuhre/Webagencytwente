@@ -66,8 +66,6 @@ function HomePage() {
         <Marquee items={clients} />
       </section>
 
-      <StatementSlider />
-
       <ServicesSection />
       <WorkSection />
       <WhySection />
@@ -78,6 +76,7 @@ function HomePage() {
     </PageShell>
   );
 }
+
 
 
 function ServicesSection() {
