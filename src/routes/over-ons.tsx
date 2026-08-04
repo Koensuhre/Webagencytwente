@@ -26,13 +26,13 @@ export const Route = createFileRoute("/over-ons")({
 function AboutPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-[1400px] px-5 pt-36 pb-16 sm:px-8 sm:pt-48">
+      <section className="mx-auto max-w-[1400px] px-5 pt-28 pb-12 sm:px-8 sm:pt-40 sm:pb-16 lg:pt-48">
         <h1 className="display display-hero">
           <RevealLines lines={["Wij zijn", "Web Agency", "Twente"]} />
         </h1>
       </section>
 
-      <section className="mx-auto grid max-w-[1400px] gap-10 px-5 pb-20 sm:px-8 lg:grid-cols-2">
+      <section className="mx-auto grid max-w-[1400px] gap-7 sm:gap-10 px-5 pb-20 sm:px-8 lg:grid-cols-2">
         <Reveal>
           <p className="text-2xl leading-snug font-medium">
             We maken digitale merken voor ondernemers die iets te vertellen hebben. Vanuit Twente,
@@ -71,10 +71,10 @@ function AboutPage() {
         <h2 className="display display-1">
           <RevealLines lines={["Onze aanpak"]} />
         </h2>
-        <ol className="mt-12 grid gap-4 md:grid-cols-2">
+        <ol className="mt-8 sm:mt-12 grid gap-4 md:grid-cols-2">
           {processSteps.map((step, i) => (
             <Reveal key={step.number} delay={i * 0.05}>
-              <li className="h-full rounded-3xl border border-ink/15 bg-card p-8">
+              <li className="h-full rounded-3xl border border-ink/15 bg-card p-6 sm:p-8">
                 <span className="display text-4xl text-primary">{step.number}</span>
                 <h3 className="display mt-3 text-3xl">{step.title}</h3>
                 <p className="mt-2 text-muted-foreground">{step.text}</p>

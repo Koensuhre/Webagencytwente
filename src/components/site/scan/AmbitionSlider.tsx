@@ -20,7 +20,7 @@ export function AmbitionSlider({
         Waar wil jij naartoe groeien?
       </h2>
 
-      <div className="mt-10 rounded-3xl border border-ink/15 bg-card p-6 sm:mt-12 sm:p-12">
+      <div className="mt-10 rounded-3xl border border-ink/15 bg-card p-6 sm:mt-8 sm:mt-12 sm:p-12">
         <label htmlFor="ambitie" className="sr-only">
           Kies jouw ambitieniveau
         </label>

@@ -66,12 +66,12 @@ function ContactPage() {
 
   return (
     <PageShell>
-      <section className="mx-auto max-w-[1400px] px-5 pt-36 pb-24 sm:px-8 sm:pt-48 sm:pb-36">
+      <section className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-8 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-36">
         <h1 className="display display-hero">
           <RevealLines lines={["Vertel ons", "over je plan"]} />
         </h1>
 
-        <div className="mt-16 grid gap-14 lg:grid-cols-[1fr_1.2fr]">
+        <div className="mt-10 sm:mt-16 grid gap-9 sm:gap-14 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <div className="space-y-8">
               <p className="text-lg text-muted-foreground">
@@ -107,7 +107,7 @@ function ContactPage() {
 
           <Reveal delay={0.1}>
             {status === "done" ? (
-              <div className="rounded-3xl bg-ink p-10 text-ink-foreground">
+              <div className="rounded-3xl bg-ink p-6 text-ink-foreground sm:p-10">
                 <p className="display text-4xl">Dankjewel!</p>
                 <p className="mt-4 text-lg text-ink-foreground/75">
                   Je aanvraag staat bij ons binnen. We nemen binnen één werkdag contact op.

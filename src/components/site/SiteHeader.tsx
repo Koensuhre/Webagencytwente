@@ -40,7 +40,7 @@ export function SiteHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "backdrop-blur-xl" : ""
+        scrolled ? "bg-background/75 shadow-[0_1px_0_0_var(--color-border)] backdrop-blur-xl" : ""
       }`}
     >
       <StatementSlider />

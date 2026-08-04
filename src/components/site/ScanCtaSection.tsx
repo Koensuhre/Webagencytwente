@@ -6,7 +6,7 @@ import { Magnetic, RevealLines } from "./motion-primitives";
 export function ScanCtaSection() {
   return (
     <section
-      className="relative overflow-hidden border-t border-ink/10 bg-background px-5 py-28 sm:px-8 sm:py-40"
+      className="relative overflow-hidden border-t border-ink/10 bg-background px-5 py-16 sm:px-8 sm:py-28 lg:py-40"
       aria-labelledby="scan-cta"
     >
       <motion.div
@@ -33,7 +33,7 @@ export function ScanCtaSection() {
         <Magnetic strength={0.35}>
           <Link
             to="/website-scan"
-            className="mt-12 inline-flex items-center gap-3 rounded-full bg-ink px-9 py-5 text-base font-semibold text-ink-foreground transition-all duration-300 hover:scale-105 hover:bg-primary focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
+            className="mt-8 sm:mt-12 inline-flex items-center gap-3 rounded-full bg-ink px-9 py-5 text-base font-semibold text-ink-foreground transition-all duration-300 hover:scale-105 hover:bg-primary focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
           >
             Start gratis website scan
             <span aria-hidden="true">&rarr;</span>

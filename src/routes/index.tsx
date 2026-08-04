@@ -95,7 +95,7 @@ function ServicesSection() {
         </Reveal>
       </div>
 
-      <ul className="mt-16 border-t border-ink/15">
+      <ul className="mt-10 sm:mt-16 border-t border-ink/15">
         {services.map((service, i) => (
           <li key={service.slug}>
             <Reveal delay={i * 0.03}>
@@ -128,7 +128,7 @@ function WorkSection() {
           <RevealLines lines={["Uitgelicht", "werk"]} />
         </h2>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 sm:mt-16 grid gap-6 sm:grid-cols-2">
           {projects.map((project, i) => (
             <Reveal key={project.slug} delay={i * 0.05} className={i % 2 === 1 ? "sm:mt-20" : ""}>
               <Link to="/werk" className="group block">
@@ -163,7 +163,7 @@ function WorkSection() {
           <Magnetic>
             <Link
               to="/werk"
-              className="mt-14 inline-flex items-center gap-3 rounded-full border border-ink-foreground/25 px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-primary hover:text-primary-foreground"
+              className="mt-9 sm:mt-14 inline-flex items-center gap-3 rounded-full border border-ink-foreground/25 px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-primary hover:text-primary-foreground"
             >
               Bekijk al ons werk
               <span aria-hidden="true">&rarr;</span>
@@ -187,7 +187,7 @@ function WhySection() {
           bouwen. Daardoor gaat het sneller en blijft het scherp.
         </p>
 
-        <dl className="mt-16 grid grid-cols-2 gap-8 border-t border-ink/20 pt-10 lg:grid-cols-4">
+        <dl className="mt-10 sm:mt-16 grid grid-cols-2 gap-8 border-t border-ink/20 pt-10 lg:grid-cols-4">
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 0.06}>
               <dt className="display text-5xl sm:text-7xl">
@@ -209,7 +209,7 @@ function ProcessSection() {
 
   return (
     <section aria-labelledby="proces">
-      <div className="mx-auto max-w-[1400px] px-5 pt-24 sm:px-8 sm:pt-36">
+      <div className="mx-auto max-w-[1400px] px-5 pt-16 sm:px-8 sm:pt-28 lg:pt-36">
         <h2 id="proces" className="display display-1">
           <RevealLines lines={["Zo werken", "we"]} />
         </h2>
@@ -234,10 +234,10 @@ function ProcessSection() {
         </div>
       </div>
 
-      <ol className="mx-auto mt-12 grid max-w-[1400px] gap-4 px-5 pb-24 sm:px-8 lg:hidden">
+      <ol className="mx-auto mt-8 sm:mt-12 grid max-w-[1400px] gap-4 px-5 pb-24 sm:px-8 lg:hidden">
         {processSteps.map((step, i) => (
           <Reveal key={step.number} delay={i * 0.05}>
-            <li className="rounded-3xl border border-ink/15 bg-card p-7">
+            <li className="rounded-3xl border border-ink/15 bg-card p-6 sm:p-7">
               <span className="display text-4xl text-primary">{step.number}</span>
               <h3 className="display mt-3 text-3xl">{step.title}</h3>
               <p className="mt-2 text-muted-foreground">{step.text}</p>
@@ -255,10 +255,10 @@ function TestimonialsSection() {
       <h2 id="klanten" className="display display-1">
         <RevealLines lines={["Wat klanten", "zeggen"]} />
       </h2>
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+      <div className="mt-9 sm:mt-14 grid gap-6 lg:grid-cols-3">
         {testimonials.map((item, i) => (
           <Reveal key={item.name} delay={i * 0.07}>
-            <figure className="flex h-full flex-col justify-between rounded-3xl border border-ink/15 bg-card p-8 transition-transform duration-300 hover:-translate-y-2">
+            <figure className="flex h-full flex-col justify-between rounded-3xl border border-ink/15 bg-card p-6 transition-transform sm:p-8 duration-300 hover:-translate-y-2">
               <blockquote className="text-2xl leading-snug font-medium">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
@@ -277,7 +277,7 @@ function TestimonialsSection() {
 function FaqSection() {
   return (
     <section className="mx-auto max-w-[1400px] px-5 pb-24 sm:px-8 sm:pb-36" aria-labelledby="faq">
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
+      <div className="grid gap-7 sm:gap-10 lg:grid-cols-[1fr_1.3fr]">
         <h2 id="faq" className="display display-1">
           <RevealLines lines={["Veel", "gevraagd"]} />
         </h2>

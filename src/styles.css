@@ -152,6 +152,12 @@
     text-size-adjust: 100%;
   }
 
+  /* Keep anchor targets clear of the fixed header + statement slider. */
+  :target,
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

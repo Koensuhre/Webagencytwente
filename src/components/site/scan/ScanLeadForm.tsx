@@ -63,12 +63,12 @@ export function ScanLeadForm({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto mt-20 max-w-[1200px] px-5 pb-24 sm:mt-36 sm:px-8 sm:pb-28"
+      className="mx-auto mt-14 max-w-[1200px] px-5 pb-16 sm:mt-28 sm:px-8 sm:pb-24 lg:mt-36 lg:pb-28"
       aria-labelledby="scan-advies"
     >
       <div className="relative overflow-hidden rounded-[1.75rem] bg-ink px-5 py-10 text-ink-foreground sm:rounded-[2rem] sm:px-14 sm:py-16">
         <div className="grain-blob floaty pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-primary/50" />
-        <div className="relative grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+        <div className="relative grid gap-7 sm:gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-8 sm:gap-12">
           <div>
             <h2 id="scan-advies" className="display display-2">
               Wij hebben nu al ideeën voor jouw website.
@@ -203,7 +203,7 @@ function ScanSuccess() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto mt-24 flex max-w-[900px] flex-col items-center px-5 pb-32 text-center sm:mt-36 sm:px-8"
+      className="mx-auto mt-16 flex max-w-[900px] flex-col items-center px-5 pb-20 text-center sm:mt-28 sm:pb-32 lg:mt-36 sm:px-8"
       aria-live="polite"
     >
       <motion.span
