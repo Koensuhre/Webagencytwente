@@ -77,21 +77,50 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Web Agency Twente — Websites die je onthoudt" },
+      {
+        name: "description",
+        content:
+          "Digital agency uit Twente voor web design, development, branding en SEO. Wij bouwen websites die opvallen en presteren.",
+      },
+      { name: "author", content: "Web Agency Twente" },
+      { property: "og:site_name", content: "Web Agency Twente" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+      },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "Web Agency Twente",
+          description:
+            "Digital agency uit Twente voor web design, development, branding, SEO en AI search optimalisatie.",
+          email: "hallo@webagencytwente.nl",
+          telephone: "+31612345678",
+          areaServed: ["Enschede", "Hengelo", "Almelo", "Twente", "Nederland"],
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Enschede",
+            addressRegion: "Overijssel",
+            addressCountry: "NL",
+          },
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
