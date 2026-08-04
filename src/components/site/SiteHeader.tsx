@@ -90,7 +90,9 @@ export function SiteHeader() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? "Menu sluiten" : "Menu openen"}
-          className="relative z-[70] flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ink-foreground md:hidden"
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-ink-foreground md:hidden ${
+            open ? "invisible" : ""
+          }`}
         >
           <span className="relative block h-3 w-5">
             <span
