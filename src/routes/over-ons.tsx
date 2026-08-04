@@ -74,7 +74,7 @@ function AboutPage() {
         <ol className="mt-8 sm:mt-12 grid gap-4 md:grid-cols-2">
           {processSteps.map((step, i) => (
             <Reveal key={step.number} delay={i * 0.05}>
-              <li className="h-full rounded-3xl border border-ink/15 bg-card p-8">
+              <li className="h-full rounded-3xl border border-ink/15 bg-card p-6 sm:p-8">
                 <span className="display text-4xl text-primary">{step.number}</span>
                 <h3 className="display mt-3 text-3xl">{step.title}</h3>
                 <p className="mt-2 text-muted-foreground">{step.text}</p>

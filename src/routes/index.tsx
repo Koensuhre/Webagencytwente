@@ -237,7 +237,7 @@ function ProcessSection() {
       <ol className="mx-auto mt-8 sm:mt-12 grid max-w-[1400px] gap-4 px-5 pb-24 sm:px-8 lg:hidden">
         {processSteps.map((step, i) => (
           <Reveal key={step.number} delay={i * 0.05}>
-            <li className="rounded-3xl border border-ink/15 bg-card p-7">
+            <li className="rounded-3xl border border-ink/15 bg-card p-6 sm:p-7">
               <span className="display text-4xl text-primary">{step.number}</span>
               <h3 className="display mt-3 text-3xl">{step.title}</h3>
               <p className="mt-2 text-muted-foreground">{step.text}</p>
@@ -258,7 +258,7 @@ function TestimonialsSection() {
       <div className="mt-9 sm:mt-14 grid gap-6 lg:grid-cols-3">
         {testimonials.map((item, i) => (
           <Reveal key={item.name} delay={i * 0.07}>
-            <figure className="flex h-full flex-col justify-between rounded-3xl border border-ink/15 bg-card p-8 transition-transform duration-300 hover:-translate-y-2">
+            <figure className="flex h-full flex-col justify-between rounded-3xl border border-ink/15 bg-card p-6 transition-transform sm:p-8 duration-300 hover:-translate-y-2">
               <blockquote className="text-2xl leading-snug font-medium">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>

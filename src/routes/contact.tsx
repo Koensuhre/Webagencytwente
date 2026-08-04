@@ -107,7 +107,7 @@ function ContactPage() {
 
           <Reveal delay={0.1}>
             {status === "done" ? (
-              <div className="rounded-3xl bg-ink p-10 text-ink-foreground">
+              <div className="rounded-3xl bg-ink p-6 text-ink-foreground sm:p-10">
                 <p className="display text-4xl">Dankjewel!</p>
                 <p className="mt-4 text-lg text-ink-foreground/75">
                   Je aanvraag staat bij ons binnen. We nemen binnen één werkdag contact op.
