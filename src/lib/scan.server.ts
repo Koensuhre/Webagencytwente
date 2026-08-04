@@ -75,6 +75,74 @@ export async function fetchPageSpeed(url: string): Promise<ScanScores | null> {
   }
 }
 
+export type PageSnapshot = {
+  title: string;
+  description: string;
+  headings: string[];
+  hasViewport: boolean;
+  wordCount: number;
+  imagesWithoutAlt: number;
+  excerpt: string;
+};
+
+function decode(value: string): string {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Fetches the homepage HTML and extracts a few plain-language signals for the AI analysis. */
+export async function fetchPageSnapshot(url: string): Promise<PageSnapshot | null> {
+  try {
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(15_000),
+      redirect: "follow",
+      headers: { "user-agent": "Mozilla/5.0 (compatible; WebAgencyTwenteScan/1.0)" },
+    });
+    if (!response.ok) return null;
+    const html = (await response.text()).slice(0, 400_000);
+
+    const title = decode(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] ?? "");
+    const description = decode(
+      /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["']/i.exec(html)?.[1] ?? "",
+    );
+    const headings = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)]
+      .map((match) => decode((match[1] ?? "").replace(/<[^>]+>/g, " ")))
+      .filter(Boolean)
+      .slice(0, 4);
+    const hasViewport = /<meta[^>]+name=["']viewport["']/i.test(html);
+    const images = [...html.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
+    const imagesWithoutAlt = images.filter((tag) => !/\balt\s*=\s*["'][^"']+["']/i.test(tag)).length;
+
+    const text = decode(
+      html
+        .replace(/<script[\s\S]*?<\/script>/gi, " ")
+        .replace(/<style[\s\S]*?<\/style>/gi, " ")
+        .replace(/<[^>]+>/g, " "),
+    );
+    const wordCount = text ? text.split(" ").length : 0;
+
+    return {
+      title,
+      description,
+      headings,
+      hasViewport,
+      wordCount,
+      imagesWithoutAlt,
+      excerpt: text.slice(0, 1200),
+    };
+  } catch (error) {
+    console.error("[scan] snapshot error", error);
+    return null;
+  }
+}
+
 export async function summariseWithAi(
   displayUrl: string,
   scores: ScanScores,
