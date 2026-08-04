@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,6 +36,11 @@ const OverOnsRoute = OverOnsRouteImport.update({
   path: '/over-ons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WebsiteScanRoute = WebsiteScanRouteImport.update({
+  id: '/website-scan',
+  path: '/website-scan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WerkRoute = WerkRouteImport.update({
   id: '/werk',
   path: '/werk',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
   '/over-ons': typeof OverOnsRoute
+  '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
   '/over-ons': typeof OverOnsRoute
+  '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,23 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
   '/over-ons': typeof OverOnsRoute
+  '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/diensten' | '/over-ons' | '/werk'
+  fullPaths:
+    '/' | '/contact' | '/diensten' | '/over-ons' | '/website-scan' | '/werk'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/diensten' | '/over-ons' | '/werk'
-  id: '__root__' | '/' | '/contact' | '/diensten' | '/over-ons' | '/werk'
+  to: '/' | '/contact' | '/diensten' | '/over-ons' | '/website-scan' | '/werk'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/diensten'
+    | '/over-ons'
+    | '/website-scan'
+    | '/werk'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +93,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DienstenRoute: typeof DienstenRoute
   OverOnsRoute: typeof OverOnsRoute
+  WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
 }
 
@@ -109,6 +127,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OverOnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/website-scan': {
+      id: '/website-scan'
+      path: '/website-scan'
+      fullPath: '/website-scan'
+      preLoaderRoute: typeof WebsiteScanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/werk': {
       id: '/werk'
       path: '/werk'
@@ -124,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DienstenRoute: DienstenRoute,
   OverOnsRoute: OverOnsRoute,
+  WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
 }
 export const routeTree = rootRouteImport
