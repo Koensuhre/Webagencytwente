@@ -38,7 +38,7 @@ function WorkPage() {
         </Reveal>
       </section>
 
-      <div className="mx-auto grid max-w-[1400px] gap-10 px-5 pb-24 sm:px-8 sm:pb-36 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1400px] gap-7 sm:gap-10 px-5 pb-24 sm:px-8 sm:pb-36 lg:grid-cols-2">
         {projects.map((project, i) => (
           <Reveal key={project.slug} delay={i * 0.05} className={i % 2 === 1 ? "lg:mt-24" : ""}>
             <article className="group">

@@ -13,7 +13,7 @@ export function SiteFooter() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-10 border-t border-ink-foreground/15 pt-10 sm:grid-cols-3">
+        <div className="mt-8 sm:mt-12 grid gap-7 sm:gap-10 border-t border-ink-foreground/15 pt-10 sm:grid-cols-3">
           <div>
             <p className="text-sm text-ink-foreground/60">Praat met ons</p>
             <a
@@ -53,7 +53,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="mt-12 text-xs text-ink-foreground/50">
+        <p className="mt-8 sm:mt-12 text-xs text-ink-foreground/50">
           &copy; {new Date().getFullYear()} Web Agency Twente &mdash; KvK 00000000
         </p>
       </div>

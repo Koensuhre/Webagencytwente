@@ -25,7 +25,7 @@ export function ScanResults({
         Dit valt ons op.
       </h2>
 
-      <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid gap-5 sm:mt-8 sm:mt-12 sm:gap-6 lg:grid-cols-3">
         {cards.map((card, index) => (
           <motion.article
             key={card.id}

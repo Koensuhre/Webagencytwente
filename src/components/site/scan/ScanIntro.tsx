@@ -25,7 +25,7 @@ export function ScanIntro({ onStart }: { onStart: (query: string) => void }) {
       </p>
 
       <form
-        className="mt-12 max-w-3xl"
+        className="mt-8 sm:mt-12 max-w-3xl"
         onSubmit={(event) => {
           event.preventDefault();
           if (value.trim().length < 2) {

@@ -71,7 +71,7 @@ function ContactPage() {
           <RevealLines lines={["Vertel ons", "over je plan"]} />
         </h1>
 
-        <div className="mt-16 grid gap-14 lg:grid-cols-[1fr_1.2fr]">
+        <div className="mt-10 sm:mt-16 grid gap-9 sm:gap-14 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <div className="space-y-8">
               <p className="text-lg text-muted-foreground">
