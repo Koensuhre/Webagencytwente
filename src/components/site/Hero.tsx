@@ -71,10 +71,10 @@ export function Hero() {
           </p>
           <Magnetic strength={0.4}>
             <Link
-              to="/contact"
+              to="/website-scan"
               className="inline-flex items-center gap-3 rounded-full bg-ink px-8 py-4 text-base font-semibold text-ink-foreground transition-colors hover:bg-primary"
             >
-              Start een project
+              Doe de gratis website scan
               <span aria-hidden="true">&rarr;</span>
             </Link>
           </Magnetic>
