@@ -38,21 +38,24 @@ export function RevealLines({
   delay?: number;
 }) {
   return (
-    <span className={cn("block", className)}>
+    <motion.span
+      className={cn("block", className)}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.05 }}
+    >
       {lines.map((line, i) => (
         <span key={line} className="block overflow-hidden pb-[0.06em]">
           <motion.span
             className={cn("block", lineClassName)}
-            initial={{ y: "110%" }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            variants={{ hidden: { y: "110%" }, visible: { y: 0 } }}
             transition={{ duration: 0.9, delay: delay + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
           >
             {line}
           </motion.span>
         </span>
       ))}
-    </span>
+    </motion.span>
   );
 }
 
