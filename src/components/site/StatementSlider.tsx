@@ -9,14 +9,14 @@ const statements = [
 ];
 
 export function StatementSlider() {
-  const items = statements.flatMap((text) => [
-    text,
-    "•",
-  ]);
+  const items = statements.flatMap((text) => [text, "•"]);
   items.pop();
   return (
-    <section className="overflow-hidden bg-ink py-5 text-ink-foreground" aria-label="Kernboodschappen">
-      <Marquee items={items} />
+    <section className="overflow-hidden bg-ink py-4 text-ink-foreground" aria-label="Kernboodschappen">
+      <Marquee
+        items={items}
+        className="display text-2xl whitespace-nowrap text-ink-foreground/90 sm:text-4xl"
+      />
     </section>
   );
 }
