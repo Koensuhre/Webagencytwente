@@ -13,14 +13,14 @@ export function AmbitionSlider({
 
   return (
     <section
-      className="mx-auto mt-24 max-w-[1200px] px-5 sm:mt-36 sm:px-8"
+      className="mx-auto mt-20 max-w-[1200px] px-5 sm:mt-36 sm:px-8"
       aria-labelledby="scan-ambitie"
     >
       <h2 id="scan-ambitie" className="display display-1">
         Waar wil jij naartoe groeien?
       </h2>
 
-      <div className="mt-12 rounded-3xl border border-ink/15 bg-card p-7 sm:p-12">
+      <div className="mt-10 rounded-3xl border border-ink/15 bg-card p-6 sm:mt-12 sm:p-12">
         <label htmlFor="ambitie" className="sr-only">
           Kies jouw ambitieniveau
         </label>
@@ -33,16 +33,16 @@ export function AmbitionSlider({
           value={index}
           onChange={(event) => onChange(Number(event.target.value))}
           aria-valuetext={tier.label}
-          className="h-2 w-full cursor-pointer appearance-none rounded-full bg-ink/10 accent-primary focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
+          className="h-2 w-full cursor-pointer touch-none appearance-none rounded-full bg-ink/10 accent-primary focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
         />
-        <div className="mt-4 grid grid-cols-3 gap-2">
+        <div className="mt-5 grid grid-cols-3 gap-1.5 sm:gap-2">
           {ambitionTiers.map((item, i) => (
             <button
               key={item.id}
               type="button"
               onClick={() => onChange(i)}
               aria-pressed={i === index}
-              className={`rounded-full py-2 text-sm font-semibold transition-colors ${
+              className={`min-h-11 rounded-full px-1 py-2 text-xs font-semibold transition-colors sm:text-sm ${
                 i === index
                   ? "bg-ink text-ink-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -55,7 +55,7 @@ export function AmbitionSlider({
           ))}
         </div>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-3">
+        <div className="mt-10 grid gap-7 sm:grid-cols-3 sm:gap-8">
           <TierBlock label="Geschatte investering">
             <AnimatePresence mode="wait">
               <motion.span
