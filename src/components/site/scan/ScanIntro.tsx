@@ -14,7 +14,7 @@ export function ScanIntro({ onStart }: { onStart: (query: string) => void }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -24 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto flex min-h-[80svh] max-w-[1100px] flex-col justify-center px-5 pt-28 pb-14 sm:px-8 sm:pt-40 sm:pb-20 lg:pt-44 lg:pb-24"
+      className="mx-auto flex min-h-[80svh] max-w-[1100px] flex-col justify-center px-5 pt-36 pb-14 sm:px-8 sm:pt-40 sm:pb-20 lg:pt-44 lg:pb-24"
       aria-labelledby="scan-intro-titel"
     >
       <h1 id="scan-intro-titel" className="display display-1">
