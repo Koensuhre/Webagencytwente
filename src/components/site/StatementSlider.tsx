@@ -12,7 +12,7 @@ export function StatementSlider() {
   const items = statements.flatMap((text) => [text, "•"]);
   items.pop();
   return (
-    <div className="relative overflow-hidden border-b border-ink/10 bg-background/45 py-2 text-foreground backdrop-blur-md">
+    <div className="relative overflow-hidden border-b border-ink/10 bg-background/55 py-2 text-foreground backdrop-blur-md">
       <ul className="sr-only">
         {statements.map((text) => (
           <li key={text}>{text}</li>
@@ -28,7 +28,7 @@ export function StatementSlider() {
       />
       <Marquee
         items={items}
-        className="text-[11px] font-semibold tracking-widest uppercase whitespace-nowrap text-ink/70"
+        className="text-[11px] font-semibold tracking-widest uppercase whitespace-nowrap text-ink/85"
       />
     </div>
   );
