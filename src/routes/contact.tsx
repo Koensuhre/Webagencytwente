@@ -85,7 +85,7 @@ function ContactPage() {
                   href="mailto:hallo@webagencytwente.nl"
                   className="text-xl font-semibold hover:text-primary"
                 >
-                  hallo@webagencytwente.nl
+                  info@webagencytwente.nl
                 </a>
               </div>
               <div>
@@ -93,7 +93,7 @@ function ContactPage() {
                   Telefoon
                 </p>
                 <a href="tel:+31612345678" className="text-xl font-semibold hover:text-primary">
-                  +31 6 12 34 56 78
+                  +31 6 23 81 62 97
                 </a>
               </div>
               <div>
