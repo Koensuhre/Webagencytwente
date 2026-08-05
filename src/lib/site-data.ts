@@ -84,10 +84,10 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  { slug: "noord-koffie", name: "Noord Koffie", tag: "Branding + Webshop", year: "2025", result: "+64% online omzet", color: "bg-primary" },
-  { slug: "veldwerk", name: "Veldwerk Studio", tag: "Web Design + Development", year: "2025", result: "0,8s laadtijd", color: "bg-accent" },
-  { slug: "hoeve-nova", name: "Hoeve Nova", tag: "Huisstijl + Local SEO", year: "2024", result: "#1 in Enschede", color: "bg-secondary" },
-  { slug: "stroomlijn", name: "Stroomlijn Installatie", tag: "Website + AI Search", year: "2024", result: "3x meer aanvragen", color: "bg-ink" },
+  { slug: "werkgenoten", name: "Werkgenoten", tag: "Web Design + Development", year: "2026", result: "+64% online omzet", color: "bg-primary" },
+  { slug: "Suhre Dienstverlening", name: "Suhre Dienstverlening", tag: "Branding + Web Design", year: "2026", result: "+90% zichtbaarheid", color: "bg-accent" },
+  { slug: "ds-management", name: "D&S Management", tag: "Huisstijl + Branding", year: "2024", result: "Sterke positionering", color: "bg-secondary" },
+  { slug: "heynoona", name: "HeyNoona", tag: "Website + Local SEO", year: "2026", result: "3x meer aanvragen", color: "bg-ink" },
 ];
 
 export const processSteps = [
@@ -113,9 +113,9 @@ export const faqs = [
 
 export const stats = [
   { value: 120, suffix: "+", label: "projecten opgeleverd" },
-  { value: 12, suffix: " jaar", label: "ervaring in digitaal" },
-  { value: 98, suffix: "%", label: "klanten blijven" },
-  { value: 5, suffix: " weken", label: "gemiddelde doorlooptijd" },
+  { value: 10, suffix: " jaar", label: "ervaring in digitaal" },
+  { value: 25, suffix: "%", label: "Tevreden klanten" },
+  { value: 4, suffix: " weken", label: "gemiddelde doorlooptijd" },
 ];
 
-export const clients = ["NOORD KOFFIE", "VELDWERK", "HOEVE NOVA", "STROOMLIJN", "BUREAU BRINK", "TWENTS GOED", "KADE 9", "LOOM"];
+export const clients = ["WERKGENOTEN", "D&S MANAGEMENT", "HEYNOONA.NL", "SUHRE DIENSTVERLENING", "DJ MARIA DE LIMA", "OOGAPPELMOES"];
