@@ -58,7 +58,7 @@ function BedanktPage() {
             ✓
           </motion.span>
           <h1 className="display display-2 mt-10">
-            Bedankt{firstName ? ` ${firstName}` : ""}! 🚀
+            Bedankt{firstName ? ` ${firstName}` : ""}!
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             We hebben je aanvraag ontvangen en sturen een bevestiging naar
