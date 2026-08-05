@@ -1,5 +1,10 @@
 import type { ComponentType } from 'react'
 
+import {
+  contactNotificationTemplate,
+  scanNotificationTemplate,
+} from './internal-notification'
+
 export interface TemplateEntry {
   component: ComponentType<any>
   subject: string | ((data: Record<string, any>) => string)
@@ -18,6 +23,6 @@ export interface TemplateEntry {
  *   // then add to TEMPLATES: 'welcome': welcomeTemplate
  */
 export const TEMPLATES: Record<string, TemplateEntry> = {
-  // Add templates here as they are created, e.g.:
-  // 'welcome': welcomeTemplate,
+  'contact-notification': contactNotificationTemplate,
+  'scan-notification': scanNotificationTemplate,
 }
