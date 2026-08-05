@@ -6,11 +6,13 @@ import { contactSchema, submitContactRequest } from "@/lib/contact.functions";
 import { saveConfirmationSummary } from "@/lib/contact-confirmation-store";
 
 import { TextField } from "./intake-ui";
+import { useSpamGuard } from "./spam-guard";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
 export function QuickMessageForm({ onBack }: { onBack: () => void }) {
   const submit = useServerFn(submitContactRequest);
+  const { getGuardValues, HoneypotField } = useSpamGuard();
   const navigate = useNavigate();
   const [values, setValues] = useState({ name: "", email: "", website: "", message: "" });
   const [errors, setErrors] = useState<Errors>({});
@@ -29,6 +31,7 @@ export function QuickMessageForm({ onBack }: { onBack: () => void }) {
       message: values.website
         ? `${values.message}\n\nWebsite: ${values.website}`
         : values.message,
+      ...getGuardValues(),
     };
     const parsed = contactSchema.safeParse(payload);
     if (!parsed.success) {
@@ -78,6 +81,7 @@ export function QuickMessageForm({ onBack }: { onBack: () => void }) {
       </p>
 
       <form onSubmit={onSubmit} noValidate className="mt-10 space-y-5">
+        <HoneypotField />
         <TextField
           id="quick-naam"
           label="Naam"
