@@ -1,8 +1,10 @@
 import { useServerFn } from "@tanstack/react-start";
+import { useNavigate } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 
 import { contactSchema, submitContactRequest } from "@/lib/contact.functions";
+import { saveConfirmationSummary } from "@/lib/contact-confirmation-store";
 
 import { ChoiceCard, StepShell, TextField } from "./intake-ui";
 import {
@@ -16,12 +18,11 @@ import {
   timingOptions,
   type IntakeAnswers,
 } from "./intake-content";
-import { IntakeSuccess } from "./IntakeSuccess";
-
 const TOTAL = 8;
 
 export function IntakeFlow({ onBack }: { onBack: () => void }) {
   const submit = useServerFn(submitContactRequest);
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<IntakeAnswers>(emptyAnswers);
   const [error, setError] = useState<string | null>(null);
@@ -79,14 +80,22 @@ export function IntakeFlow({ onBack }: { onBack: () => void }) {
     setStatus("sending");
     try {
       await submit({ data: parsed.data });
+      saveConfirmationSummary({
+        name: parsed.data.name,
+        email: parsed.data.email,
+        fields: [
+          { label: "Naam", value: parsed.data.name },
+          { label: "E-mail", value: parsed.data.email },
+          { label: "Bedrijf", value: parsed.data.company || "—" },
+          { label: "Onderwerp", value: parsed.data.service || "—" },
+        ],
+        message: parsed.data.message,
+      });
       setStatus("done");
+      void navigate({ to: "/bedankt" });
     } catch {
       setStatus("error");
     }
-  }
-
-  if (status === "done") {
-    return <IntakeSuccess name={answers.firstName || answers.name} />;
   }
 
   const isSummary = step === TOTAL + 1;
