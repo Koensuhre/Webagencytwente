@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
 
 export const contactSchema = z.object({
@@ -7,13 +8,51 @@ export const contactSchema = z.object({
   company: z.string().trim().max(120).optional().or(z.literal("")),
   service: z.string().trim().max(80).optional().or(z.literal("")),
   message: z.string().trim().min(10, "Vertel iets meer over je project").max(2000),
+  hp: z.string().max(200).optional(),
+  startedAt: z.number().int().positive().optional(),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
 
+const MIN_FILL_MS = 2500;
+const RATE_WINDOW_MS = 60_000;
+const RATE_MAX = 3;
+const recentSubmissions = new Map<string, number[]>();
+
+function isRateLimited(key: string) {
+  const now = Date.now();
+  const hits = (recentSubmissions.get(key) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
+  hits.push(now);
+  recentSubmissions.set(key, hits);
+  if (recentSubmissions.size > 500) {
+    for (const [k, v] of recentSubmissions) {
+      if (v.every((t) => now - t >= RATE_WINDOW_MS)) recentSubmissions.delete(k);
+    }
+  }
+  return hits.length > RATE_MAX;
+}
+
 export const submitContactRequest = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => contactSchema.parse(input))
   .handler(async ({ data }) => {
+    // Honeypot: bots vullen dit verborgen veld in — stil accepteren, niets opslaan.
+    if (data.hp && data.hp.trim().length > 0) {
+      return { ok: true as const };
+    }
+
+    // Tijdcontrole: menselijke invulling duurt langer dan een paar seconden.
+    if (data.startedAt && Date.now() - data.startedAt < MIN_FILL_MS) {
+      throw new Error("Even geduld — probeer het over een paar seconden opnieuw.");
+    }
+
+    const ip =
+      getRequestHeader("cf-connecting-ip") ??
+      getRequestHeader("x-forwarded-for")?.split(",")[0]?.trim() ??
+      "unknown";
+    if (isRateLimited(`${ip}`)) {
+      throw new Error("Te veel aanvragen achter elkaar. Probeer het over een minuut opnieuw.");
+    }
+
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { data: inserted, error } = await supabaseAdmin
