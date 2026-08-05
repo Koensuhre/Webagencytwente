@@ -15,6 +15,7 @@ import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,12 @@ const WerkRoute = WerkRouteImport.update({
   path: '/werk',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByFullPath {
   '/over-ons': typeof OverOnsRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +70,7 @@ export interface FileRoutesByTo {
   '/over-ons': typeof OverOnsRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +80,27 @@ export interface FileRoutesById {
   '/over-ons': typeof OverOnsRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/contact' | '/diensten' | '/over-ons' | '/website-scan' | '/werk'
+    | '/'
+    | '/contact'
+    | '/diensten'
+    | '/over-ons'
+    | '/website-scan'
+    | '/werk'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/diensten' | '/over-ons' | '/website-scan' | '/werk'
+  to:
+    | '/'
+    | '/contact'
+    | '/diensten'
+    | '/over-ons'
+    | '/website-scan'
+    | '/werk'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -86,6 +109,7 @@ export interface FileRouteTypes {
     | '/over-ons'
     | '/website-scan'
     | '/werk'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +119,7 @@ export interface RootRouteChildren {
   OverOnsRoute: typeof OverOnsRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +166,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WerkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +183,7 @@ const rootRouteChildren: RootRouteChildren = {
   OverOnsRoute: OverOnsRoute,
   WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
