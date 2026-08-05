@@ -38,17 +38,44 @@ export const submitScanLead = createServerFn({ method: "POST" })
       .filter(Boolean)
       .join("\n");
 
-    const { error } = await supabaseAdmin.from("contact_requests").insert({
+    const { data: inserted, error } = await supabaseAdmin
+      .from("contact_requests")
+      .insert({
       name: data.name,
       email: data.email,
       company: data.company,
       service: "Website scan",
       message,
-    });
+      })
+      .select("id")
+      .single();
 
     if (error) {
       console.error("[scan-lead] insert failed", error.message);
       throw new Error("Verzenden mislukt. Probeer het later opnieuw.");
+    }
+
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("scan-notification", "info@webagencytwente.nl", {
+        templateData: {
+          heading: "Nieuwe website scan aanvraag",
+          intro: "Verstuurd via de interactieve website scan.",
+          fields: [
+            { label: "Naam", value: data.name },
+            { label: "E-mail", value: data.email },
+            { label: "Bedrijf", value: data.company },
+            { label: "Website", value: data.website },
+            { label: "Ambitie", value: data.ambition || "—" },
+            { label: "Wensen", value: data.wishes || "—" },
+          ],
+          message: data.summary || "",
+        },
+        idempotencyKey: `scan-notification-${inserted?.id ?? data.email}`,
+        replyTo: data.email,
+      });
+    } catch (mailError) {
+      console.error("[scan-lead] notification email failed", mailError);
     }
 
     return { ok: true as const };

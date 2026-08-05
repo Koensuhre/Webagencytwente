@@ -16,17 +16,42 @@ export const submitContactRequest = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const { error } = await supabaseAdmin.from("contact_requests").insert({
+    const { data: inserted, error } = await supabaseAdmin
+      .from("contact_requests")
+      .insert({
       name: data.name,
       email: data.email,
       company: data.company || null,
       service: data.service || null,
       message: data.message,
-    });
+      })
+      .select("id")
+      .single();
 
     if (error) {
       console.error("[contact] insert failed", error.message);
       throw new Error("Verzenden mislukt. Probeer het later opnieuw.");
+    }
+
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("contact-notification", "info@webagencytwente.nl", {
+        templateData: {
+          heading: "Nieuwe contactaanvraag",
+          intro: "Verstuurd via het contactformulier op de website.",
+          fields: [
+            { label: "Naam", value: data.name },
+            { label: "E-mail", value: data.email },
+            { label: "Bedrijf", value: data.company || "—" },
+            { label: "Onderwerp", value: data.service || "—" },
+          ],
+          message: data.message,
+        },
+        idempotencyKey: `contact-notification-${inserted?.id ?? data.email}`,
+        replyTo: data.email,
+      });
+    } catch (mailError) {
+      console.error("[contact] notification email failed", mailError);
     }
 
     return { ok: true as const };
