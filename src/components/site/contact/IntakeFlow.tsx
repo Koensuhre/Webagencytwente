@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 
 import { contactSchema, submitContactRequest } from "@/lib/contact.functions";
+import { useSpamGuard } from "./spam-guard";
 import { saveConfirmationSummary } from "@/lib/contact-confirmation-store";
 
 import { ChoiceCard, StepShell, TextField } from "./intake-ui";
@@ -22,6 +23,7 @@ const TOTAL = 8;
 
 export function IntakeFlow({ onBack }: { onBack: () => void }) {
   const submit = useServerFn(submitContactRequest);
+  const { getGuardValues, HoneypotField } = useSpamGuard();
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<IntakeAnswers>(emptyAnswers);
@@ -71,6 +73,7 @@ export function IntakeFlow({ onBack }: { onBack: () => void }) {
       company: answers.company.trim(),
       service: labelOf(projectOptions, answers.project),
       message: buildIntakeMessage(answers),
+      ...getGuardValues(),
     };
     const parsed = contactSchema.safeParse(values);
     if (!parsed.success) {
@@ -102,6 +105,7 @@ export function IntakeFlow({ onBack }: { onBack: () => void }) {
 
   return (
     <div className="mx-auto max-w-[860px]">
+      <HoneypotField />
       <div className="flex items-center justify-between gap-4">
         <button
           type="button"
