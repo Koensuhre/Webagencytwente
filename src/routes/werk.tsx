@@ -42,21 +42,20 @@ function WorkPage() {
         {projects.map((project, i) => (
           <Reveal key={project.slug} delay={i * 0.05} className={i % 2 === 1 ? "lg:mt-24" : ""}>
             <article className="group">
-              <div className="relative aspect-4/3 overflow-hidden rounded-3xl bg-ink">
-                <motion.img
-                  src={project.image}
-                  alt={`Project ${project.name} — ${project.tag}`}
-                  loading="lazy"
-                  width={1200}
-                  height={900}
-                  className="absolute inset-0 h-full w-full object-cover"
+              <div className={`relative aspect-4/3 overflow-hidden rounded-3xl ${project.color}`}>
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center p-8"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/15 to-transparent" />
-                <span className="display pointer-events-none absolute bottom-6 left-6 right-6 text-[9vw] leading-[0.9] text-ink-foreground sm:text-[3vw]">
-                  {project.name}
-                </span>
+                >
+                  <span
+                    className={`display text-center text-[10vw] leading-[0.85] sm:text-[4vw] ${
+                      project.color === "bg-ink" ? "text-ink-foreground" : "text-ink"
+                    }`}
+                  >
+                    {project.name}
+                  </span>
+                </motion.div>
               </div>
               <div className="mt-5 flex flex-wrap items-baseline justify-between gap-3">
                 <h2 className="display text-3xl">{project.name}</h2>

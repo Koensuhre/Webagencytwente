@@ -1,8 +1,3 @@
-import werkgenotenImg from "@/assets/werk-werkgenoten.jpg";
-import suhreImg from "@/assets/werk-suhre.jpg";
-import dsManagementImg from "@/assets/werk-ds-management.jpg";
-import heynoonaImg from "@/assets/werk-heynoona.jpg";
-
 export const SITE_NAME = "Web Agency Twente";
 
 export type Service = {
@@ -86,14 +81,13 @@ export type Project = {
   year: string;
   result: string;
   color: string;
-  image: string;
 };
 
 export const projects: Project[] = [
-  { slug: "werkgenoten", name: "Werkgenoten", tag: "Web Design + Development", year: "2026", result: "+64% online omzet", color: "bg-primary", image: werkgenotenImg },
-  { slug: "Suhre Dienstverlening", name: "Suhre Dienstverlening", tag: "Branding + Web Design", year: "2026", result: "+90% zichtbaarheid", color: "bg-accent", image: suhreImg },
-  { slug: "ds-management", name: "D&S Management", tag: "Huisstijl + Branding", year: "2024", result: "Sterke positionering", color: "bg-secondary", image: dsManagementImg },
-  { slug: "heynoona", name: "HeyNoona", tag: "Website + Local SEO", year: "2026", result: "3x meer aanvragen", color: "bg-ink", image: heynoonaImg },
+  { slug: "werkgenoten", name: "Werkgenoten", tag: "Web Design + Development", year: "2026", result: "+64% online omzet", color: "bg-primary" },
+  { slug: "Suhre Dienstverlening", name: "Suhre Dienstverlening", tag: "Branding + Web Design", year: "2026", result: "+90% zichtbaarheid", color: "bg-accent" },
+  { slug: "ds-management", name: "D&S Management", tag: "Huisstijl + Branding", year: "2024", result: "Sterke positionering", color: "bg-secondary" },
+  { slug: "heynoona", name: "HeyNoona", tag: "Website + Local SEO", year: "2026", result: "3x meer aanvragen", color: "bg-ink" },
 ];
 
 export const processSteps = [
