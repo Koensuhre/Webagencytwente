@@ -13,9 +13,9 @@ import { Hero } from "@/components/site/Hero";
 import { Marquee } from "@/components/site/Marquee";
 import { PageShell } from "@/components/site/PageShell";
 import { ScanCtaSection } from "@/components/site/ScanCtaSection";
-import { Counter, Magnetic, Reveal, RevealLines } from "@/components/site/motion-primitives";
+import { Magnetic, Reveal, RevealLines } from "@/components/site/motion-primitives";
 
-import { clients, faqs, processSteps, projects, services, stats, testimonials } from "@/lib/site-data";
+import { clients, faqs, processSteps, projects, services, testimonials } from "@/lib/site-data";
 
 
 export const Route = createFileRoute("/")({
@@ -187,16 +187,6 @@ function WhySection() {
           bouwen. Daardoor gaat het sneller en blijft het scherp.
         </p>
 
-        <dl className="mt-10 sm:mt-16 grid grid-cols-2 gap-8 border-t border-ink/20 pt-10 lg:grid-cols-4">
-          {stats.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 0.06}>
-              <dt className="display text-5xl sm:text-7xl">
-                <Counter to={stat.value} suffix={stat.suffix} />
-              </dt>
-              <dd className="mt-2 text-sm text-secondary-foreground/70">{stat.label}</dd>
-            </Reveal>
-          ))}
-        </dl>
       </div>
     </section>
   );
