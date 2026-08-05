@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 
+import { contactConfirmationTemplate } from './contact-confirmation'
 import {
   contactNotificationTemplate,
   scanNotificationTemplate,
@@ -24,5 +25,6 @@ export interface TemplateEntry {
  */
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'contact-notification': contactNotificationTemplate,
+  'contact-confirmation': contactConfirmationTemplate,
   'scan-notification': scanNotificationTemplate,
 }
