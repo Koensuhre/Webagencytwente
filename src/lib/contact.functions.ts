@@ -35,10 +35,31 @@ export const submitContactRequest = createServerFn({ method: "POST" })
 
     try {
       const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      const summaryFields = [
+        { label: "Naam", value: data.name },
+        { label: "E-mail", value: data.email },
+        { label: "Bedrijf", value: data.company || "—" },
+        { label: "Onderwerp", value: data.service || "—" },
+      ];
       await sendTemplateEmail("contact-notification", "info@webagencytwente.nl", {
         templateData: {
           heading: "Nieuwe contactaanvraag",
           intro: "Verstuurd via het contactformulier op de website.",
+          fields: summaryFields,
+          message: data.message,
+        },
+        idempotencyKey: `contact-notification-${inserted?.id ?? data.email}`,
+        replyTo: data.email,
+      });
+    } catch (mailError) {
+      console.error("[contact] notification email failed", mailError);
+    }
+
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("contact-confirmation", data.email, {
+        templateData: {
+          name: data.name.split(" ")[0] ?? data.name,
           fields: [
             { label: "Naam", value: data.name },
             { label: "E-mail", value: data.email },
@@ -47,11 +68,11 @@ export const submitContactRequest = createServerFn({ method: "POST" })
           ],
           message: data.message,
         },
-        idempotencyKey: `contact-notification-${inserted?.id ?? data.email}`,
-        replyTo: data.email,
+        idempotencyKey: `contact-confirmation-${inserted?.id ?? data.email}`,
+        replyTo: "info@webagencytwente.nl",
       });
     } catch (mailError) {
-      console.error("[contact] notification email failed", mailError);
+      console.error("[contact] confirmation email failed", mailError);
     }
 
     return { ok: true as const };
