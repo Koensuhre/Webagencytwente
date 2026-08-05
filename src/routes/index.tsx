@@ -15,7 +15,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { ScanCtaSection } from "@/components/site/ScanCtaSection";
 import { Counter, Magnetic, Reveal, RevealLines } from "@/components/site/motion-primitives";
 
-import { clients, faqs, processSteps, projects, services, stats, testimonials } from "@/lib/site-data";
+import { clients, faqs, processSteps, projects, services, testimonials } from "@/lib/site-data";
 
 
 export const Route = createFileRoute("/")({
