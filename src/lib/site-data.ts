@@ -113,8 +113,8 @@ export const faqs = [
 
 export const stats = [
   { value: 120, suffix: "+", label: "projecten opgeleverd" },
-  { value: 10, suffix: " jaar", label: "ervaring in digitaal" },
-  { value: 25, suffix: "%", label: "Tevreden klanten" },
+  { value: 7, suffix: "+ JAAR", label: "ervaring in digitaal" },
+  { value: 25, suffix: "", label: "Tevreden klanten" },
   { value: 4, suffix: " weken", label: "gemiddelde doorlooptijd" },
 ];
 
