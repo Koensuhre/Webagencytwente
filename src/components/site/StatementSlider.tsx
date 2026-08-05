@@ -13,8 +13,8 @@ export function StatementSlider() {
   items.pop();
   return (
     <div
-      aria-hidden="false"
-      className="pointer-events-none fixed top-0 inset-x-0 z-30 overflow-hidden border-b border-ink/10 bg-background/30 py-1.5 text-foreground backdrop-blur-md select-none sm:py-2"
+      aria-hidden="true"
+      className="hidden pointer-events-none fixed top-0 inset-x-0 z-30 overflow-hidden border-b border-ink/10 bg-background/30 py-1.5 text-foreground backdrop-blur-md select-none sm:py-2"
     >
       <ul className="sr-only">
         {statements.map((text) => (
