@@ -1,15 +1,17 @@
 import { useServerFn } from "@tanstack/react-start";
+import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { contactSchema, submitContactRequest } from "@/lib/contact.functions";
+import { saveConfirmationSummary } from "@/lib/contact-confirmation-store";
 
-import { IntakeSuccess } from "./IntakeSuccess";
 import { TextField } from "./intake-ui";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
 export function QuickMessageForm({ onBack }: { onBack: () => void }) {
   const submit = useServerFn(submitContactRequest);
+  const navigate = useNavigate();
   const [values, setValues] = useState({ name: "", email: "", website: "", message: "" });
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -42,13 +44,23 @@ export function QuickMessageForm({ onBack }: { onBack: () => void }) {
     setStatus("sending");
     try {
       await submit({ data: parsed.data });
+      saveConfirmationSummary({
+        name: parsed.data.name,
+        email: parsed.data.email,
+        fields: [
+          { label: "Naam", value: parsed.data.name },
+          { label: "E-mail", value: parsed.data.email },
+          { label: "Website", value: values.website || "—" },
+          { label: "Onderwerp", value: parsed.data.service || "—" },
+        ],
+        message: parsed.data.message,
+      });
       setStatus("done");
+      void navigate({ to: "/bedankt" });
     } catch {
       setStatus("error");
     }
   }
-
-  if (status === "done") return <IntakeSuccess quick />;
 
   return (
     <div className="mx-auto max-w-[720px]">
