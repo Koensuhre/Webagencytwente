@@ -132,20 +132,21 @@ function WorkSection() {
           {projects.map((project, i) => (
             <Reveal key={project.slug} delay={i * 0.05} className={i % 2 === 1 ? "sm:mt-20" : ""}>
               <Link to="/werk" className="group block">
-                <div
-                  className={`relative aspect-4/3 overflow-hidden rounded-3xl ${project.color} ${
-                    project.color === "bg-ink" ? "ring-1 ring-ink-foreground/20" : ""
-                  }`}
-                >
-                  <motion.div
-                    className="absolute inset-0 flex items-center justify-center p-8"
+                <div className="relative aspect-4/3 overflow-hidden rounded-3xl bg-ink ring-1 ring-ink-foreground/15">
+                  <motion.img
+                    src={project.image}
+                    alt={`Project ${project.name} — ${project.tag}`}
+                    loading="lazy"
+                    width={1200}
+                    height={900}
+                    className="absolute inset-0 h-full w-full object-cover"
                     whileHover={{ scale: 1.06 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <span className="display text-center text-[9vw] leading-[0.85] text-ink sm:text-[4vw]">
-                      {project.name}
-                    </span>
-                  </motion.div>
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/15 to-transparent" />
+                  <span className="display pointer-events-none absolute bottom-6 left-6 right-6 text-[8vw] leading-[0.9] text-ink-foreground sm:text-[3vw]">
+                    {project.name}
+                  </span>
                   <span className="absolute right-5 bottom-5 rounded-full bg-ink px-4 py-2 text-xs font-semibold text-ink-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     {project.result}
                   </span>
