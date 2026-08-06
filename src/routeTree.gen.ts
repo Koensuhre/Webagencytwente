@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as EmailTestRouteImport } from './routes/email-test'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
@@ -51,6 +52,11 @@ const OverOnsRoute = OverOnsRouteImport.update({
   path: '/over-ons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WebsiteScanRoute = WebsiteScanRouteImport.update({
   id: '/website-scan',
   path: '/website-scan',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/diensten': typeof DienstenRoute
   '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/diensten': typeof DienstenRoute
   '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/diensten': typeof DienstenRoute
   '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/diensten'
     | '/email-test'
     | '/over-ons'
+    | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
     | '/lovable/email/auth/preview'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/diensten'
     | '/email-test'
     | '/over-ons'
+    | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
     | '/lovable/email/auth/preview'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/diensten'
     | '/email-test'
     | '/over-ons'
+    | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
     | '/lovable/email/auth/preview'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   DienstenRoute: typeof DienstenRoute
   EmailTestRoute: typeof EmailTestRoute
   OverOnsRoute: typeof OverOnsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OverOnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/website-scan': {
       id: '/website-scan'
       path: '/website-scan'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   DienstenRoute: DienstenRoute,
   EmailTestRoute: EmailTestRoute,
   OverOnsRoute: OverOnsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
@@ -272,13 +293,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
