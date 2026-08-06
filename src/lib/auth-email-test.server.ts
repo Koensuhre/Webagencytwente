@@ -99,7 +99,7 @@ export async function sendAuthTestEmail(
     await sendLovableEmail(
       {
         to,
-        from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+        from: `${SITE_NAME} <info@${FROM_DOMAIN}>`,
         sender_domain: SENDER_DOMAIN,
         subject: config.subject,
         html,
