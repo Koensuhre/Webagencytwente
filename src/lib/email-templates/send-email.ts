@@ -6,13 +6,14 @@ import { TEMPLATES } from './registry'
 // Server-only: reads LOVABLE_API_KEY. Never import from client components.
 
 // Configuration baked in at scaffold time
-const SITE_NAME = "echo-effect-architect"
+const SITE_NAME = "Web Agency Twente"
 // SENDER_DOMAIN is the verified sender subdomain FQDN (e.g., "notify.example.com").
 // It MUST match the subdomain delegated to Lovable's nameservers. NEVER use the root domain.
 const SENDER_DOMAIN = "notify.webagencytwente.nl"
 // FROM_DOMAIN is the domain shown in the From: header (e.g., "example.com").
 // Can be the root domain when display_from_root is enabled — this is cosmetic only.
 const FROM_DOMAIN = "webagencytwente.nl"
+const FROM_ADDRESS = `info@${FROM_DOMAIN}`
 
 export type SendTemplateEmailResult =
   | { sent: true }
@@ -69,7 +70,7 @@ export async function sendTemplateEmail(
     await sendLovableEmail(
       {
         to: recipient,
-        from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+        from: `${SITE_NAME} <${FROM_ADDRESS}>`,
         sender_domain: SENDER_DOMAIN,
         subject,
         html,
