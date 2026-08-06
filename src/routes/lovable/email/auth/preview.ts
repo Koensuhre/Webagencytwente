@@ -18,7 +18,7 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-const SITE_NAME = "echo-effect-architect"
+const SITE_NAME = "Web Agency Twente"
 const ROOT_DOMAIN = "webagencytwente.nl"
 
 // Sample data for preview mode ONLY (not used in actual email sending).
