@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BedanktRouteImport } from './routes/bedankt'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DienstenRouteImport } from './routes/diensten'
+import { Route as EmailTestRouteImport } from './routes/email-test'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
@@ -38,6 +39,11 @@ const ContactRoute = ContactRouteImport.update({
 const DienstenRoute = DienstenRouteImport.update({
   id: '/diensten',
   path: '/diensten',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailTestRoute = EmailTestRouteImport.update({
+  id: '/email-test',
+  path: '/email-test',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OverOnsRoute = OverOnsRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
+    | '/email-test'
     | '/over-ons'
     | '/website-scan'
     | '/werk'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
+    | '/email-test'
     | '/over-ons'
     | '/website-scan'
     | '/werk'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
+    | '/email-test'
     | '/over-ons'
     | '/website-scan'
     | '/werk'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   BedanktRoute: typeof BedanktRoute
   ContactRoute: typeof ContactRoute
   DienstenRoute: typeof DienstenRoute
+  EmailTestRoute: typeof EmailTestRoute
   OverOnsRoute: typeof OverOnsRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
@@ -189,6 +202,13 @@ declare module '@tanstack/react-router' {
       path: '/diensten'
       fullPath: '/diensten'
       preLoaderRoute: typeof DienstenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email-test': {
+      id: '/email-test'
+      path: '/email-test'
+      fullPath: '/email-test'
+      preLoaderRoute: typeof EmailTestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/over-ons': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   BedanktRoute: BedanktRoute,
   ContactRoute: ContactRoute,
   DienstenRoute: DienstenRoute,
+  EmailTestRoute: EmailTestRoute,
   OverOnsRoute: OverOnsRoute,
   WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
