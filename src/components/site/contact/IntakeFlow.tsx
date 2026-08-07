@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 
 import { contactSchema, submitContactRequest } from "@/lib/contact.functions";
+import { trackEvent } from "@/lib/analytics";
 import { useSpamGuard } from "./spam-guard";
 import { saveConfirmationSummary } from "@/lib/contact-confirmation-store";
 
@@ -83,6 +84,7 @@ export function IntakeFlow({ onBack }: { onBack: () => void }) {
     setStatus("sending");
     try {
       await submit({ data: parsed.data });
+      trackEvent("generate_lead", { form: "intake_flow" });
       saveConfirmationSummary({
         name: parsed.data.name,
         email: parsed.data.email,
