@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BedanktRouteImport } from './routes/bedankt'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DienstenRouteImport } from './routes/diensten'
-import { Route as EmailTestRouteImport } from './routes/email-test'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
@@ -40,11 +39,6 @@ const ContactRoute = ContactRouteImport.update({
 const DienstenRoute = DienstenRouteImport.update({
   id: '/diensten',
   path: '/diensten',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EmailTestRoute = EmailTestRouteImport.update({
-  id: '/email-test',
-  path: '/email-test',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OverOnsRoute = OverOnsRouteImport.update({
@@ -89,7 +83,6 @@ export interface FileRoutesByFullPath {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
-  '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
@@ -103,7 +96,6 @@ export interface FileRoutesByTo {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
-  '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
@@ -118,7 +110,6 @@ export interface FileRoutesById {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
-  '/email-test': typeof EmailTestRoute
   '/over-ons': typeof OverOnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
@@ -134,7 +125,6 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
-    | '/email-test'
     | '/over-ons'
     | '/sitemap.xml'
     | '/website-scan'
@@ -148,7 +138,6 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
-    | '/email-test'
     | '/over-ons'
     | '/sitemap.xml'
     | '/website-scan'
@@ -162,7 +151,6 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
-    | '/email-test'
     | '/over-ons'
     | '/sitemap.xml'
     | '/website-scan'
@@ -177,7 +165,6 @@ export interface RootRouteChildren {
   BedanktRoute: typeof BedanktRoute
   ContactRoute: typeof ContactRoute
   DienstenRoute: typeof DienstenRoute
-  EmailTestRoute: typeof EmailTestRoute
   OverOnsRoute: typeof OverOnsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
@@ -215,13 +202,6 @@ declare module '@tanstack/react-router' {
       path: '/diensten'
       fullPath: '/diensten'
       preLoaderRoute: typeof DienstenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/email-test': {
-      id: '/email-test'
-      path: '/email-test'
-      fullPath: '/email-test'
-      preLoaderRoute: typeof EmailTestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/over-ons': {
@@ -281,7 +261,6 @@ const rootRouteChildren: RootRouteChildren = {
   BedanktRoute: BedanktRoute,
   ContactRoute: ContactRoute,
   DienstenRoute: DienstenRoute,
-  EmailTestRoute: EmailTestRoute,
   OverOnsRoute: OverOnsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WebsiteScanRoute: WebsiteScanRoute,
@@ -293,13 +272,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
