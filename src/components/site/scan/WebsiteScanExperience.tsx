@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 
 import { runWebsiteScan } from "@/lib/scan.functions";
+import { trackEvent } from "@/lib/analytics";
 import type { ScanResult } from "@/lib/scan-types";
 
 import { AmbitionSlider } from "./AmbitionSlider";
@@ -25,6 +26,7 @@ export function WebsiteScanExperience() {
   const start = useCallback(
     (value: string) => {
       setQuery(value);
+      trackEvent("scan_started", { query: value });
       setPhase("scanning");
       setAnimationDone(false);
       setResult(null);
