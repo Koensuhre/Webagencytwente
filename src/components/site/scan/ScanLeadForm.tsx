@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 
 import { scanLeadSchema, submitScanLead } from "@/lib/scan.functions";
+import { trackEvent } from "@/lib/analytics";
 
 type FieldKey = "name" | "company" | "email" | "website" | "wishes";
 type Errors = Partial<Record<FieldKey, string>>;
@@ -49,6 +50,7 @@ export function ScanLeadForm({
     setStatus("sending");
     try {
       await submit({ data: parsed.data });
+      trackEvent("generate_lead", { form: "website_scan", ambition });
       setStatus("done");
     } catch {
       setStatus("error");
