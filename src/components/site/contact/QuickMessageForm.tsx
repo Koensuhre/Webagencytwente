@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { contactSchema, submitContactRequest } from "@/lib/contact.functions";
+import { trackEvent } from "@/lib/analytics";
 import { saveConfirmationSummary } from "@/lib/contact-confirmation-store";
 
 import { TextField } from "./intake-ui";
@@ -47,6 +48,7 @@ export function QuickMessageForm({ onBack }: { onBack: () => void }) {
     setStatus("sending");
     try {
       await submit({ data: parsed.data });
+      trackEvent("generate_lead", { form: "quick_message" });
       saveConfirmationSummary({
         name: parsed.data.name,
         email: parsed.data.email,
