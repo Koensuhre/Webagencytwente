@@ -212,7 +212,7 @@ Schrijf voor een Nederlands webdesignbureau drie korte, positief-kritische obser
       candidates?: {
         content?: {
           parts?: { functionCall?: { args?: Record<string, unknown> } }[];
-        }?;
+        };
       }[];
     };
     const parts = json.candidates?.[0]?.content?.parts ?? [];
