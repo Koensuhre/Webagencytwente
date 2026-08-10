@@ -53,19 +53,19 @@ export const submitContactRequest = createServerFn({ method: "POST" })
       throw new Error("Te veel aanvragen achter elkaar. Probeer het over een minuut opnieuw.");
     }
 
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { createPublicServerClient } = await import("@/lib/supabase-public.server");
+    const supabase = createPublicServerClient();
 
-    const { data: inserted, error } = await supabaseAdmin
-      .from("contact_requests")
-      .insert({
+    // `anon` mag alleen invoegen, niet teruglezen — daarom een eigen id voor idempotency.
+    const submissionId = crypto.randomUUID();
+
+    const { error } = await supabase.from("contact_requests").insert({
       name: data.name,
       email: data.email,
       company: data.company || null,
       service: data.service || null,
       message: data.message,
-      })
-      .select("id")
-      .single();
+    });
 
     if (error) {
       console.error("[contact] insert failed", error.message);
@@ -87,7 +87,7 @@ export const submitContactRequest = createServerFn({ method: "POST" })
           fields: summaryFields,
           message: data.message,
         },
-        idempotencyKey: `contact-notification-${inserted?.id ?? data.email}`,
+        idempotencyKey: `contact-notification-${submissionId}`,
         replyTo: data.email,
       });
     } catch (mailError) {
@@ -107,7 +107,7 @@ export const submitContactRequest = createServerFn({ method: "POST" })
           ],
           message: data.message,
         },
-        idempotencyKey: `contact-confirmation-${inserted?.id ?? data.email}`,
+        idempotencyKey: `contact-confirmation-${submissionId}`,
         replyTo: "info@webagencytwente.nl",
       });
     } catch (mailError) {
