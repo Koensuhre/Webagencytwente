@@ -148,7 +148,7 @@ export async function summariseWithAi(
   scores: ScanScores,
   snapshot: PageSnapshot | null,
 ): Promise<Record<ScanCard["id"], string | undefined> | null> {
-  const apiKey = process.env["LOVABLE_API_KEY"];
+  const apiKey = process.env["GEMINI_API_KEY"];
   if (!apiKey) return null;
 
   const prompt = `Website: ${displayUrl}
@@ -168,56 +168,62 @@ Tekstfragment: ${snapshot.excerpt}`
 Schrijf voor een Nederlands webdesignbureau drie korte, positief-kritische observaties voor de eigenaar van deze website. Niet technisch, geen jargon, geen verkooppraatje. Maximaal 30 woorden per observatie. Onderwerpen: design (uitstraling en overtuigingskracht), vindbaarheid (Google en AI-platformen zoals ChatGPT), conversie (structuur en call-to-actions).`;
 
   try {
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      signal: AbortSignal.timeout(30_000),
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: "Je schrijft beknopt, warm en professioneel Nederlands." },
-          { role: "user", content: prompt },
-        ],
-        tools: [
-          {
-            type: "function",
-            function: {
-              name: "observaties",
-              description: "Geef de drie observaties terug.",
-              parameters: {
-                type: "object",
-                properties: {
-                  design: { type: "string" },
-                  vindbaarheid: { type: "string" },
-                  conversie: { type: "string" },
-                },
-                required: ["design", "vindbaarheid", "conversie"],
-                additionalProperties: false,
-              },
-            },
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(30_000),
+        body: JSON.stringify({
+          systemInstruction: {
+            parts: [{ text: "Je schrijft beknopt, warm en professioneel Nederlands." }],
           },
-        ],
-        tool_choice: { type: "function", function: { name: "observaties" } },
-      }),
-    });
+          contents: [{ role: "user", parts: [{ text: prompt }] }],
+          tools: [
+            {
+              functionDeclarations: [
+                {
+                  name: "observaties",
+                  description: "Geef de drie observaties terug.",
+                  parameters: {
+                    type: "OBJECT",
+                    properties: {
+                      design: { type: "STRING" },
+                      vindbaarheid: { type: "STRING" },
+                      conversie: { type: "STRING" },
+                    },
+                    required: ["design", "vindbaarheid", "conversie"],
+                  },
+                },
+              ],
+            },
+          ],
+          toolConfig: { functionCallingConfig: { mode: "ANY" } },
+        }),
+      },
+    );
 
     if (!response.ok) {
-      console.error("[scan] ai gateway failed", response.status);
+      console.error("[scan] gemini api failed", response.status);
       return null;
     }
 
     const json = (await response.json()) as {
-      choices?: { message?: { tool_calls?: { function?: { arguments?: string } }[] } }[];
+      candidates?: {
+        content?: {
+          parts?: { functionCall?: { args?: Record<string, unknown> } }[];
+        };
+      }[];
     };
-    const args = json.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
+    const parts = json.candidates?.[0]?.content?.parts ?? [];
+    const args = parts.find((part) => part.functionCall?.args)?.functionCall?.args;
     if (!args) return null;
-    const parsed = JSON.parse(args) as Record<string, unknown>;
     const clean = (value: unknown) =>
       typeof value === "string" && value.trim().length > 0 ? value.trim().slice(0, 400) : undefined;
     return {
-      design: clean(parsed["design"]),
-      vindbaarheid: clean(parsed["vindbaarheid"]),
-      conversie: clean(parsed["conversie"]),
+      design: clean(args["design"]),
+      vindbaarheid: clean(args["vindbaarheid"]),
+      conversie: clean(args["conversie"]),
     };
   } catch (error) {
     console.error("[scan] ai error", error);
