@@ -61,7 +61,7 @@ function HomePage() {
       <section className="border-y border-ink/10 bg-background" aria-label="Klanten">
         <div className="mx-auto max-w-[1400px] px-5 pt-8 sm:px-8">
           <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase">
-            Gewerktt voor
+            Gewerkt voor
           </p>
         </div>
         <Marquee items={clients} />
