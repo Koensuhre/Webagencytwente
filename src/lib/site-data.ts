@@ -118,4 +118,4 @@ export const stats = [
   { value: 4, suffix: " weken", label: "gemiddelde doorlooptijd" },
 ];
 
-export const clients = ["WERKGENOTEN", "D&S MANAGEMENT", "HEYNOONA.NL", "SUHRE DIENSTVERLENING", "DJ MARIA DE LIMA", "OOGAPPELMOES"];
+export const clients = ["WERKGENOTEN", "D&S MANAGEMENT", "HEYNOONA.NL", "SUHRE DIENSTVERLENING", "OOGAPPELMOES"];
