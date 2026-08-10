@@ -27,7 +27,9 @@ export const runWebsiteScan = createServerFn({ method: "POST" })
 export const submitScanLead = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => scanLeadSchema.parse(input))
   .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { createPublicServerClient } = await import("@/lib/supabase-public.server");
+    const supabase = createPublicServerClient();
+    const submissionId = crypto.randomUUID();
 
     const message = [
       `Website: ${data.website}`,
@@ -38,17 +40,13 @@ export const submitScanLead = createServerFn({ method: "POST" })
       .filter(Boolean)
       .join("\n");
 
-    const { data: inserted, error } = await supabaseAdmin
-      .from("contact_requests")
-      .insert({
+    const { error } = await supabase.from("contact_requests").insert({
       name: data.name,
       email: data.email,
       company: data.company,
       service: "Website scan",
       message,
-      })
-      .select("id")
-      .single();
+    });
 
     if (error) {
       console.error("[scan-lead] insert failed", error.message);
@@ -71,7 +69,7 @@ export const submitScanLead = createServerFn({ method: "POST" })
           ],
           message: data.summary || "",
         },
-        idempotencyKey: `scan-notification-${inserted?.id ?? data.email}`,
+        idempotencyKey: `scan-notification-${submissionId}`,
         replyTo: data.email,
       });
     } catch (mailError) {
