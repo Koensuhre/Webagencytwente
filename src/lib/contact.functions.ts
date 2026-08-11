@@ -72,7 +72,6 @@ export const submitContactRequest = createServerFn({ method: "POST" })
       throw new Error("Verzenden mislukt. Probeer het later opnieuw.");
     }
 
-    // Mail is een losse stap na de opslag: de aanvraag is nu hoe dan ook bewaard.
     try {
       const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
       const summaryFields = [
@@ -81,7 +80,7 @@ export const submitContactRequest = createServerFn({ method: "POST" })
         { label: "Bedrijf", value: data.company || "—" },
         { label: "Onderwerp", value: data.service || "—" },
       ];
-      const result = await sendTemplateEmail("contact-notification", "info@webagencytwente.nl", {
+      await sendTemplateEmail("contact-notification", "info@webagencytwente.nl", {
         templateData: {
           heading: "Nieuwe contactaanvraag",
           intro: "Verstuurd via het contactformulier op de website.",
@@ -91,19 +90,13 @@ export const submitContactRequest = createServerFn({ method: "POST" })
         idempotencyKey: `contact-notification-${submissionId}`,
         replyTo: data.email,
       });
-      if (!result.sent) {
-        console.error("[contact] notification email not sent:", result.reason);
-      }
     } catch (mailError) {
-      console.error(
-        "[contact] notification email failed:",
-        mailError instanceof Error ? mailError.message : mailError,
-      );
+      console.error("[contact] notification email failed", mailError);
     }
 
     try {
       const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
-      const result = await sendTemplateEmail("contact-confirmation", data.email, {
+      await sendTemplateEmail("contact-confirmation", data.email, {
         templateData: {
           name: data.name.split(" ")[0] ?? data.name,
           fields: [
@@ -117,14 +110,8 @@ export const submitContactRequest = createServerFn({ method: "POST" })
         idempotencyKey: `contact-confirmation-${submissionId}`,
         replyTo: "info@webagencytwente.nl",
       });
-      if (!result.sent) {
-        console.error("[contact] confirmation email not sent:", result.reason);
-      }
     } catch (mailError) {
-      console.error(
-        "[contact] confirmation email failed:",
-        mailError instanceof Error ? mailError.message : mailError,
-      );
+      console.error("[contact] confirmation email failed", mailError);
     }
 
     return { ok: true as const };
