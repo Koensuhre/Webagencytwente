@@ -66,8 +66,8 @@ export function Hero() {
 
         <div className="mt-10 flex flex-col gap-7 border-t border-ink/15 pt-8 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-md text-base text-muted-foreground sm:text-lg">
-            Webdesign, development en merk vanuit Twente. Wil je een website laten maken die niet in
-            de massa verdwijnt? Dan zit je hier goed.
+            Webdesign, development en merk vanuit Twente, door heel Nederland. Wij maken websites die
+            voor je werken én jouw doelgroep bereiken.
           </p>
           <Magnetic strength={0.4} className="w-full sm:w-auto">
             <Link
