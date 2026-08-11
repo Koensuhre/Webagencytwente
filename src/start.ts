@@ -1,7 +1,30 @@
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
+import { PERMANENT_REDIRECTS } from "./lib/redirects";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+
+// 301-redirect old website paths before the router or any other middleware runs.
+// Returns a permanent redirect for any path listed in the redirect map.
+const redirectMiddleware = createMiddleware().server(async ({ next, request }) => {
+  const url = new URL(request.url);
+  // Strip trailing slashes (but keep "/" as "/")
+  const pathname = url.pathname.replace(/\/+$/, "") || "/";
+
+  const target = PERMANENT_REDIRECTS[pathname];
+  if (target) {
+    const search = url.search || "";
+    return new Response(null, {
+      status: 301,
+      headers: {
+        Location: `${target}${search}`,
+        "Cache-Control": "public, max-age=31536000",
+      },
+    });
+  }
+
+  return next();
+});
 
 const errorMiddleware = createMiddleware().server(async ({ next, request }) => {
   if (new URL(request.url).pathname.startsWith("/lovable/")) {
@@ -30,5 +53,5 @@ const csrfMiddleware = createCsrfMiddleware({
 
 export const startInstance = createStart(() => ({
   functionMiddleware: [attachSupabaseAuth],
-  requestMiddleware: [errorMiddleware, csrfMiddleware],
+  requestMiddleware: [redirectMiddleware, errorMiddleware, csrfMiddleware],
 }));
