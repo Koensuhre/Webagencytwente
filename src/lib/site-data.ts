@@ -12,7 +12,7 @@ export const services: Service[] = [
   {
     slug: "web-design",
     title: "Web Design",
-    short: "Webdesign in Twente dat blijft hangen.",
+    short: "Een website laten maken die écht bij je bedrijf past.",
     body: "Webdesign met karakter. Geen template-gevoel, maar een eigen visuele taal die past bij jullie merk en publiek — of je nu een moderne website laat maken voor een startend bedrijf of een bestaande site opnieuw wilt vormgeven.",
     points: ["Art direction", "UX & wireframes", "Design system", "Prototypes"],
   },
@@ -61,7 +61,7 @@ export const services: Service[] = [
   {
     slug: "local-seo",
     title: "Local SEO",
-    short: "Online vindbaarheid in heel Twente.",
+    short: "Online vindbaarheid in jouw regio.",
     body: "Van Enschede en Hengelo tot Almelo: we zorgen dat jullie bovenaan staan als iemand in de buurt zoekt. Lokale landingspagina's, een compleet Google Bedrijfsprofiel en reviews die vertrouwen geven.",
     points: ["Google Bedrijfsprofiel", "Lokale landingspagina's", "Reviews", "Vermeldingen"],
   },
@@ -105,9 +105,9 @@ export const processSteps = [
 ];
 
 export const testimonials = [
-  { quote: "Binnen vijf weken stond er een site waar we trots op zijn. En hij scoort ook nog.", name: "Sanne Bruggink", role: "Oprichter, Noord Koffie" },
-  { quote: "Ze denken mee als een partner, niet als een leverancier. Scherpe vragen, snelle uitvoering.", name: "Joris Kamp", role: "Directeur, Stroomlijn Installatie" },
-  { quote: "Het ontwerp is spannend zonder onrustig te zijn. Onze klanten noemen het spontaan.", name: "Lieke ter Horst", role: "Marketing, Veldwerk Studio" },
+  { quote: "Binnen vijf weken stond er een site waar we trots op zijn. En hij scoort ook nog.", name: "Sanne Bruggink", role: "Marketingmanager" },
+  { quote: "Ze denken mee als een partner, niet als een leverancier. Scherpe vragen, snelle uitvoering.", name: "Joris Kamp", role: "Directeur" },
+  { quote: "Het ontwerp is spannend zonder onrustig te zijn. Onze klanten noemen het spontaan.", name: "Lieke ter Horst", role: "Marketing" },
 ];
 
 export const faqs = [

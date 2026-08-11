@@ -119,9 +119,10 @@ function ServicesSection() {
 
       <Reveal delay={0.1}>
         <p className="mt-10 max-w-3xl text-base text-muted-foreground sm:text-lg">
-          We werken voor zzp'ers, starters en mkb-bedrijven in Enschede, Hengelo, Almelo en de rest
-          van Overijssel. Of je nu voor het eerst een betaalbare website laat maken, een webshop wilt
-          bouwen of beter gevonden wilt worden in Google: je praat direct met de mensen die het maken.
+          We werken voor zzp'ers, starters en mkb-bedrijven in Twente en de rest van Nederland. Of je
+          nu voor het eerst een website laten maken, een bestaande website wilt laten groeien, een
+          webshop wilt bouwen of beter gevonden wilt worden in Google: je praat direct met onze
+          specialisten.
         </p>
       </Reveal>
     </section>
