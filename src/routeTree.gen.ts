@@ -17,7 +17,6 @@ import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
-import { Route as ApiPublicMaildebugRouteImport } from './routes/api/public/maildebug'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -62,11 +61,6 @@ const WerkRoute = WerkRouteImport.update({
   path: '/werk',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicMaildebugRoute = ApiPublicMaildebugRouteImport.update({
-  id: '/api/public/maildebug',
-  path: '/api/public/maildebug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -93,7 +87,6 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
-  '/api/public/maildebug': typeof ApiPublicMaildebugRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -107,7 +100,6 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
-  '/api/public/maildebug': typeof ApiPublicMaildebugRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -122,7 +114,6 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
-  '/api/public/maildebug': typeof ApiPublicMaildebugRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -138,7 +129,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
-    | '/api/public/maildebug'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -152,7 +142,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
-    | '/api/public/maildebug'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -166,7 +155,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
-    | '/api/public/maildebug'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -181,7 +169,6 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
-  ApiPublicMaildebugRoute: typeof ApiPublicMaildebugRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -245,13 +232,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WerkRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/maildebug': {
-      id: '/api/public/maildebug'
-      path: '/api/public/maildebug'
-      fullPath: '/api/public/maildebug'
-      preLoaderRoute: typeof ApiPublicMaildebugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -285,7 +265,6 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
-  ApiPublicMaildebugRoute: ApiPublicMaildebugRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
