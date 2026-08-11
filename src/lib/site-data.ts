@@ -112,8 +112,11 @@ export const testimonials = [
 
 export const faqs = [
   { q: "Wat kost een website?", a: "Een complete site begint bij ongeveer 3.500 euro. Terwijl een kleine starterswebsite al vanaf 500 euro te realiseren is. Merk, webshop of maatwerk loopt hoger op. Na het kennismakingsgesprek krijgen jullie een vaste prijs, geen open eind. Doe ook onze gratis website scan om erachter te komen wat bij jou past!" },
+  { q: "Wat kost een website laten maken voor zzp of mkb?", a: "Voor zzp'ers en starters bouwen we een betaalbare website vanaf ongeveer 500 euro. Voor mkb en kleine bedrijven met meerdere pagina's, teksten en SEO zit je meestal tussen 1.500 en 3.500 euro. Je krijgt vooraf een vaste prijs." },
+  { q: "Hoe zorgen jullie dat we hoger in Google komen?", a: "We beginnen bij techniek en structuur, daarna zoekwoorden en content. Voor lokale bedrijven richten we ons op online vindbaarheid in Enschede, Hengelo en Almelo. Daarnaast maken we jullie content ook citeerbaar voor AI-assistenten, zodat je zichtbaar bent in ChatGPT en Google AI Overviews." },
   { q: "Hoe lang duurt het?", a: "Een landingspagina in twee weken, een volledige website meestal in vier tot zes weken. Snel kan, mits we samen snel beslissen." },
   { q: "Werken jullie alleen in Twente?", a: "We zitten in Twente en werken daar het liefst, maar onze klanten zitten door heel Nederland. Alles kan ook op afstand." },
+  { q: "Bouwen jullie ook webshops?", a: "Ja. We bouwen webshops in Shopify of WooCommerce, en maatwerk e-commerce als dat beter past. Inclusief productstructuur, betalingen en koppelingen." },
   { q: "Kunnen we zelf teksten en pagina's aanpassen?", a: "Ja. We leveren een eenvoudig CMS op en nemen jullie mee in hoe het werkt. Liever uit handen? Dan doen wij het onderhoud." },
   { q: "Doen jullie ook alleen een logo of huisstijl?", a: "Zeker. Merkwerk kan los van een website. Vaak groeit het daarna vanzelf door." },
 ];
