@@ -53,10 +53,9 @@ export const submitScanLead = createServerFn({ method: "POST" })
       throw new Error("Verzenden mislukt. Probeer het later opnieuw.");
     }
 
-    // Mail is een losse stap na de opslag: de lead is nu hoe dan ook bewaard.
     try {
       const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
-      const result = await sendTemplateEmail("scan-notification", "info@webagencytwente.nl", {
+      await sendTemplateEmail("scan-notification", "info@webagencytwente.nl", {
         templateData: {
           heading: "Nieuwe website scan aanvraag",
           intro: "Verstuurd via de interactieve website scan.",
@@ -73,14 +72,8 @@ export const submitScanLead = createServerFn({ method: "POST" })
         idempotencyKey: `scan-notification-${submissionId}`,
         replyTo: data.email,
       });
-      if (!result.sent) {
-        console.error("[scan-lead] notification email not sent:", result.reason);
-      }
     } catch (mailError) {
-      console.error(
-        "[scan-lead] notification email failed:",
-        mailError instanceof Error ? mailError.message : mailError,
-      );
+      console.error("[scan-lead] notification email failed", mailError);
     }
 
     return { ok: true as const };
