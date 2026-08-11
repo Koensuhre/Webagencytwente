@@ -8,13 +8,13 @@ import { processSteps, stats } from "@/lib/site-data";
 export const Route = createFileRoute("/over-ons")({
   head: () => ({
     meta: [
-      { title: "Over ons — Web Agency Twente" },
+      { title: "Over ons — marketingbureau & webbouwer in Twente" },
       {
         name: "description",
         content:
-          "Wij zijn een klein digital agency uit Twente. Direct contact, snelle rondes en werk waar we onze naam aan verbinden.",
+          "Wij zijn Web Agency Twente: een klein marketing- en webbureau uit Twente. Direct contact, snelle rondes en werk waar we onze naam aan verbinden.",
       },
-      { property: "og:title", content: "Over ons — Web Agency Twente" },
+      { property: "og:title", content: "Over ons — marketingbureau & webbouwer in Twente" },
       { property: "og:description", content: "Klein team, grote uitvoering. Dit is hoe wij werken." },
       { property: "og:url", content: "/over-ons" },
     ],
@@ -35,8 +35,9 @@ function AboutPage() {
       <section className="mx-auto grid max-w-[1400px] gap-7 sm:gap-10 px-5 pb-20 sm:px-8 lg:grid-cols-2">
         <Reveal>
           <p className="text-2xl leading-snug font-medium">
-            We maken digitale merken voor ondernemers die iets te vertellen hebben. Vanuit Twente,
-            voor klanten door heel Nederland.
+            We maken digitale merken voor ondernemers die iets te vertellen hebben. Als webbouwer en
+            marketingbureau in Twente werken we voor klanten in Enschede, Hengelo, Almelo en de rest
+            van Nederland.
           </p>
         </Reveal>
         <Reveal delay={0.1}>
