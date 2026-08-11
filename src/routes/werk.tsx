@@ -13,7 +13,7 @@ export const Route = createFileRoute("/werk")({
       {
         name: "description",
         content:
-          "Een selectie van projecten van onze webbouwers in Twente: merken, websites en webshops voor zzp'ers en mkb in Enschede, Hengelo en Almelo.",
+          "Een selectie van projecten van onze webbouwers: merken, websites en webshops voor zzp'ers en mkb in Enschede, Hengelo en Almelo.",
       },
       { property: "og:title", content: "Ons werk — websites & webshops uit Twente" },
       { property: "og:description", content: "Websites, webshops en merken die we bouwden voor ondernemers in Twente." },
