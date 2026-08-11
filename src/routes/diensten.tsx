@@ -37,7 +37,7 @@ function ServicesPage() {
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
             Wij nemen het hele digitale plaatje: hoe het eruitziet, hoe het werkt en hoe mensen het
             vinden. Een website of webshop laten maken in Twente, een logo laten ontwerpen of
-            zoekmachine optimalisatie — het kan los, en het werkt het beste samen.
+            zoekmachine optimalisatie — het kan los, en het werkt het beste samen..
           </p>
         </Reveal>
       </section>
