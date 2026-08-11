@@ -11,13 +11,13 @@ import { RouteChooser } from "@/components/site/contact/RouteChooser";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Web Agency Twente" },
+      { title: "Contact — website laten maken in Twente" },
       {
         name: "description",
         content:
-          "Vertel ons over jouw idee. Doe de korte intake of stuur ons direct een bericht — je hoort binnen één werkdag persoonlijk van ons.",
+          "Website, webshop of SEO nodig in Twente? Doe de korte intake of stuur ons direct een bericht — je hoort binnen één werkdag persoonlijk van ons.",
       },
-      { property: "og:title", content: "Contact — Web Agency Twente" },
+      { property: "og:title", content: "Contact — website laten maken in Twente" },
       {
         property: "og:description",
         content: "Start een project met Web Agency Twente via onze korte intake of een kort bericht.",
