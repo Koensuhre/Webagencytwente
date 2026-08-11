@@ -34,9 +34,9 @@ export async function sendTemplateEmail(
   to: string,
   options: SendTemplateEmailOptions = {}
 ): Promise<SendTemplateEmailResult> {
-  const apiKey = process.env['RESEND_API_KEY']
+  const apiKey = process.env['LOVABLE_API_KEY']
   if (!apiKey) {
-    throw new Error('RESEND_API_KEY is not configured')
+    throw new Error('LOVABLE_API_KEY is not configured')
   }
 
   const template = TEMPLATES[templateName]
@@ -62,27 +62,28 @@ export async function sendTemplateEmail(
       ? template.subject(templateData)
       : template.subject
 
-  const response = await fetch(RESEND_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-      'Idempotency-Key': options.idempotencyKey || crypto.randomUUID(),
-    },
-    body: JSON.stringify({
-      from: `${SITE_NAME} <${FROM_ADDRESS}>`,
-      to: [recipient],
-      subject,
-      html,
-      text,
-      ...(options.replyTo ? { reply_to: options.replyTo } : {}),
-    }),
-  })
-
-  if (!response.ok) {
-    const body = await response.text()
-    console.error(`[email] Resend request failed [${response.status}]: ${body}`)
-    throw new Error(`Email send failed [${response.status}]: ${body}`)
+  try {
+    await sendLovableEmail(
+      {
+        to: recipient,
+        from: `${SITE_NAME} <${FROM_ADDRESS}>`,
+        sender_domain: SENDER_DOMAIN,
+        subject,
+        html,
+        text,
+        ...(options.replyTo ? { reply_to: options.replyTo } : {}),
+      },
+      {
+        apiKey,
+        sendUrl: process.env['LOVABLE_SEND_URL'],
+        idempotencyKey: options.idempotencyKey || crypto.randomUUID(),
+      }
+    )
+  } catch (error) {
+    if (error instanceof EmailAPIError && error.code === 'recipient_suppressed') {
+      return { sent: false, reason: 'recipient_suppressed' }
+    }
+    throw error
   }
 
   return { sent: true }
