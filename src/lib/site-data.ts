@@ -54,7 +54,7 @@ export const services: Service[] = [
   {
     slug: "seo",
     title: "SEO",
-    short: "Hoger in Google komen op wat telt.",
+    short: "Online beter gevonden worden.",
     body: "Zoekmachine optimalisatie die verder gaat dan een checklist: techniek, content en structuur. We bouwen sites die zoekmachines begrijpen en bezoekers waarderen, zodat je beter gevonden wordt in Google.",
     points: ["Technische SEO", "Zoekwoorden", "Content", "Rapportage"],
   },
