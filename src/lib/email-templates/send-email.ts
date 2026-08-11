@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { render } from '@react-email/render'
+import { EmailAPIError, sendLovableEmail } from '@lovable.dev/email-js'
 import { TEMPLATES } from './registry'
 
-// Server-only: reads RESEND_API_KEY. Never import from client components.
+// Server-only: reads LOVABLE_API_KEY. Never import from client components.
 
 // Configuration baked in at scaffold time
 const SITE_NAME = "Web Agency Twente"
-// FROM_DOMAIN moet in Resend geverifieerd zijn.
+const SENDER_DOMAIN = "notify.webagencytwente.nl"
 const FROM_DOMAIN = "webagencytwente.nl"
 const FROM_ADDRESS = `info@${FROM_DOMAIN}`
-const RESEND_ENDPOINT = 'https://api.resend.com/emails'
 
 export type SendTemplateEmailResult =
   | { sent: true }
