@@ -9,14 +9,14 @@ import { projects } from "@/lib/site-data";
 export const Route = createFileRoute("/werk")({
   head: () => ({
     meta: [
-      { title: "Werk — Web Agency Twente" },
+      { title: "Ons werk — websites & webshops uit Twente" },
       {
         name: "description",
         content:
-          "Een selectie van projecten: merken, websites en webshops voor ondernemers in Twente en daarbuiten.",
+          "Een selectie van projecten van onze webbouwers in Twente: merken, websites en webshops voor zzp'ers en mkb in Enschede, Hengelo en Almelo.",
       },
-      { property: "og:title", content: "Werk — Web Agency Twente" },
-      { property: "og:description", content: "Projecten waar we trots op zijn." },
+      { property: "og:title", content: "Ons werk — websites & webshops uit Twente" },
+      { property: "og:description", content: "Websites, webshops en merken die we bouwden voor ondernemers in Twente." },
       { property: "og:url", content: "/werk" },
     ],
     links: [{ rel: "canonical", href: "/werk" }],
@@ -33,7 +33,8 @@ function WorkPage() {
         </h1>
         <Reveal delay={0.1}>
           <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-            Vier recente projecten. Elk met een eigen karakter, dezelfde standaard.
+            Vier recente projecten uit Twente. Elk met een eigen karakter, dezelfde standaard:
+            scherp ontwerp, snelle techniek en goede vindbaarheid.
           </p>
         </Reveal>
       </section>
