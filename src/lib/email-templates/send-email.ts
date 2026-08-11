@@ -1,15 +1,13 @@
 import * as React from 'react'
 import { render } from '@react-email/render'
-import { EmailAPIError, sendLovableEmail } from '@lovable.dev/email-js'
 import { TEMPLATES } from './registry'
 
-// Server-only: reads LOVABLE_API_KEY. Never import from client components.
+// Server-only: reads RESEND_API_KEY. Never import from client components.
 
-// Configuration baked in at scaffold time
-const SITE_NAME = "Web Agency Twente"
-const SENDER_DOMAIN = "notify.webagencytwente.nl"
-const FROM_DOMAIN = "webagencytwente.nl"
+const SITE_NAME = 'Web Agency Twente'
+const FROM_DOMAIN = 'webagencytwente.nl'
 const FROM_ADDRESS = `info@${FROM_DOMAIN}`
+const RESEND_ENDPOINT = 'https://api.resend.com/emails'
 
 export type SendTemplateEmailResult =
   | { sent: true }
@@ -23,20 +21,21 @@ export interface SendTemplateEmailOptions {
 }
 
 /**
- * Renders a registered template and sends it through Lovable's managed email
- * API. Suppression, retries, and rate limits are enforced by Lovable
- * server-side. A suppressed recipient is an expected outcome
- * ({ sent: false }); any other failure throws — EmailAPIError exposes
- * .code and .status for branching.
+ * Renders a registered template and sends it through Resend. Works identically
+ * in local dev, Lovable preview and Vercel production — the only requirement is
+ * a RESEND_API_KEY in the server environment.
+ *
+ * A suppressed/blocked recipient resolves { sent: false }; any other failure
+ * throws with the provider's status and message so callers can log it.
  */
 export async function sendTemplateEmail(
   templateName: string,
   to: string,
   options: SendTemplateEmailOptions = {}
 ): Promise<SendTemplateEmailResult> {
-  const apiKey = process.env['LOVABLE_API_KEY']
+  const apiKey = process.env['RESEND_API_KEY']
   if (!apiKey) {
-    throw new Error('LOVABLE_API_KEY is not configured')
+    throw new Error('RESEND_API_KEY is not configured')
   }
 
   const template = TEMPLATES[templateName]
@@ -63,30 +62,36 @@ export async function sendTemplateEmail(
       : template.subject
 
   const idempotencyKey = options.idempotencyKey || crypto.randomUUID()
+  const from = process.env['EMAIL_FROM'] || `${SITE_NAME} <${FROM_ADDRESS}>`
   const payload = {
-    to: recipient,
-    from: `${SITE_NAME} <${FROM_ADDRESS}>`,
-    sender_domain: SENDER_DOMAIN,
+    from,
+    to: [recipient],
     subject,
     html,
     text,
-    purpose: 'transactional',
-    label: templateName,
-    idempotency_key: idempotencyKey,
+    tags: [{ name: 'template', value: templateName.replace(/[^a-zA-Z0-9_-]/g, '_') }],
     ...(options.replyTo ? { reply_to: options.replyTo } : {}),
   }
 
-  try {
-    await sendLovableEmail(payload, {
-      apiKey,
-      sendUrl: process.env['LOVABLE_SEND_URL'],
-      idempotencyKey,
-    })
-  } catch (error) {
-    if (error instanceof EmailAPIError && error.code === 'recipient_suppressed') {
+  const response = await fetch(RESEND_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+      // Resend dedupes identical sends that share this key.
+      'Idempotency-Key': idempotencyKey,
+    },
+    body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(20_000),
+  })
+
+  if (!response.ok) {
+    const body = await response.text()
+    // Resend blocks addresses on its own suppression list — an expected outcome.
+    if (response.status === 403 && /suppress|blocked/i.test(body)) {
       return { sent: false, reason: 'recipient_suppressed' }
     }
-    throw error
+    throw new Error(`Resend send failed [${response.status}] ${body}`)
   }
 
   return { sent: true }

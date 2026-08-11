@@ -17,6 +17,7 @@ import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
+import { Route as ApiPublicHealthEmailRouteImport } from './routes/api/public/health/email'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -61,6 +62,11 @@ const WerkRoute = WerkRouteImport.update({
   path: '/werk',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHealthEmailRoute = ApiPublicHealthEmailRouteImport.update({
+  id: '/api/public/health/email',
+  path: '/api/public/health/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/api/public/health/email': typeof ApiPublicHealthEmailRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/api/public/health/email': typeof ApiPublicHealthEmailRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/api/public/health/email': typeof ApiPublicHealthEmailRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
+    | '/api/public/health/email'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
+    | '/api/public/health/email'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
+    | '/api/public/health/email'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
+  ApiPublicHealthEmailRoute: typeof ApiPublicHealthEmailRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WerkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/health/email': {
+      id: '/api/public/health/email'
+      path: '/api/public/health/email'
+      fullPath: '/api/public/health/email'
+      preLoaderRoute: typeof ApiPublicHealthEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/auth/preview': {
       id: '/lovable/email/auth/preview'
       path: '/lovable/email/auth/preview'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
+  ApiPublicHealthEmailRoute: ApiPublicHealthEmailRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
@@ -272,13 +293,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
