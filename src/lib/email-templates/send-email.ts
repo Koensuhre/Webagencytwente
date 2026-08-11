@@ -62,23 +62,26 @@ export async function sendTemplateEmail(
       ? template.subject(templateData)
       : template.subject
 
+  const idempotencyKey = options.idempotencyKey || crypto.randomUUID()
+  const payload = {
+    to: recipient,
+    from: `${SITE_NAME} <${FROM_ADDRESS}>`,
+    sender_domain: SENDER_DOMAIN,
+    subject,
+    html,
+    text,
+    purpose: 'transactional',
+    label: templateName,
+    idempotency_key: idempotencyKey,
+    ...(options.replyTo ? { reply_to: options.replyTo } : {}),
+  }
+
   try {
-    await sendLovableEmail(
-      {
-        to: recipient,
-        from: `${SITE_NAME} <${FROM_ADDRESS}>`,
-        sender_domain: SENDER_DOMAIN,
-        subject,
-        html,
-        text,
-        ...(options.replyTo ? { reply_to: options.replyTo } : {}),
-      },
-      {
-        apiKey,
-        sendUrl: process.env['LOVABLE_SEND_URL'],
-        idempotencyKey: options.idempotencyKey || crypto.randomUUID(),
-      }
-    )
+    await sendLovableEmail(payload, {
+      apiKey,
+      sendUrl: process.env['LOVABLE_SEND_URL'],
+      idempotencyKey,
+    })
   } catch (error) {
     if (error instanceof EmailAPIError && error.code === 'recipient_suppressed') {
       return { sent: false, reason: 'recipient_suppressed' }
