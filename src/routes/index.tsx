@@ -21,16 +21,16 @@ import { clients, faqs, processSteps, projects, services, testimonials } from "@
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Web Agency Twente — Websites die je onthoudt" },
+      { title: "Web Agency Twente — Webdesign & SEO in Twente" },
       {
         name: "description",
         content:
-          "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk.",
+          "Website laten maken in Twente? Wij zijn Web Agency Twente: webdesign, webshops, branding en SEO voor ondernemers in Enschede, Hengelo, Almelo en heel Overijssel.",
       },
-      { property: "og:title", content: "Web Agency Twente — Websites die je onthoudt" },
+      { property: "og:title", content: "Web Agency Twente — Webdesign & SEO in Twente" },
       {
         property: "og:description",
-        content: "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk.",
+        content: "Webdesign, webshops, branding en SEO voor ondernemers in Enschede, Hengelo, Almelo en heel Overijssel.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -90,7 +90,7 @@ function ServicesSection() {
         </h2>
         <Reveal delay={0.1}>
           <p className="max-w-sm text-lg text-muted-foreground sm:justify-self-end">
-            Van eerste schets tot vindbaarheid in AI-antwoorden. Alles onder één dak.
+            Van eerste schets tot vindbaarheid in Google en AI-antwoorden. Alles onder één dak.
           </p>
         </Reveal>
       </div>
@@ -116,6 +116,14 @@ function ServicesSection() {
           </li>
         ))}
       </ul>
+
+      <Reveal delay={0.1}>
+        <p className="mt-10 max-w-3xl text-base text-muted-foreground sm:text-lg">
+          We werken voor zzp'ers, starters en mkb-bedrijven in Enschede, Hengelo, Almelo en de rest
+          van Overijssel. Of je nu voor het eerst een betaalbare website laat maken, een webshop wilt
+          bouwen of beter gevonden wilt worden in Google: je praat direct met de mensen die het maken.
+        </p>
+      </Reveal>
     </section>
   );
 }
