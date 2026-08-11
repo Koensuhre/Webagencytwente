@@ -75,7 +75,6 @@ export async function sendTemplateEmail(
     idempotency_key: idempotencyKey,
     ...(options.replyTo ? { reply_to: options.replyTo } : {}),
   }
-  console.log('[email] sending', Object.keys(payload).join(','), 'purpose=', payload.purpose)
 
   try {
     await sendLovableEmail(payload, {
