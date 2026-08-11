@@ -8,16 +8,16 @@ import { services } from "@/lib/site-data";
 export const Route = createFileRoute("/diensten")({
   head: () => ({
     meta: [
-      { title: "Diensten — Web Agency Twente" },
+      { title: "Diensten — webdesign, webshops & SEO in Twente" },
       {
         name: "description",
         content:
-          "Web design, development, branding, logo, huisstijl, SEO, local SEO, AI search en onderhoud. Alles wat jullie merk online nodig heeft.",
+          "Webdesign, web development, webshops, branding, logo laten ontwerpen, SEO, local SEO en AI search. Alles wat jullie merk online nodig heeft, vanuit Twente.",
       },
-      { property: "og:title", content: "Diensten — Web Agency Twente" },
+      { property: "og:title", content: "Diensten — webdesign, webshops & SEO in Twente" },
       {
         property: "og:description",
-        content: "Design, development, merk en vindbaarheid onder één dak.",
+        content: "Webdesign, development, webshops, merk en online vindbaarheid onder één dak.",
       },
       { property: "og:url", content: "/diensten" },
     ],
@@ -34,9 +34,10 @@ function ServicesPage() {
           <RevealLines lines={["Diensten"]} />
         </h1>
         <Reveal delay={0.1}>
-          <p className="mt-8 max-w-xl text-lg text-muted-foreground">
+          <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
             Wij nemen het hele digitale plaatje: hoe het eruitziet, hoe het werkt en hoe mensen het
-            vinden.
+            vinden. Een website of webshop laten maken in Twente, een logo laten ontwerpen of
+            zoekmachine optimalisatie — het kan los, en het werkt het beste samen.
           </p>
         </Reveal>
       </section>
