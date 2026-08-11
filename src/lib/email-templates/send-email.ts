@@ -62,6 +62,8 @@ export async function sendTemplateEmail(
       ? template.subject(templateData)
       : template.subject
 
+  const idempotencyKey = options.idempotencyKey || crypto.randomUUID()
+
   try {
     await sendLovableEmail(
       {
@@ -71,12 +73,14 @@ export async function sendTemplateEmail(
         subject,
         html,
         text,
+        purpose: 'transactional',
+        idempotency_key: idempotencyKey,
         ...(options.replyTo ? { reply_to: options.replyTo } : {}),
       },
       {
         apiKey,
         sendUrl: process.env['LOVABLE_SEND_URL'],
-        idempotencyKey: options.idempotencyKey || crypto.randomUUID(),
+        idempotencyKey,
       }
     )
   } catch (error) {
