@@ -12,16 +12,23 @@ export const services: Service[] = [
   {
     slug: "web-design",
     title: "Web Design",
-    short: "Ontwerpen die blijven hangen.",
-    body: "We ontwerpen websites met karakter. Geen template-gevoel, maar een eigen visuele taal die past bij jullie merk en publiek.",
+    short: "Webdesign in Twente dat blijft hangen.",
+    body: "Webdesign met karakter. Geen template-gevoel, maar een eigen visuele taal die past bij jullie merk en publiek — of je nu een moderne website laat maken voor een startend bedrijf of een bestaande site opnieuw wilt vormgeven.",
     points: ["Art direction", "UX & wireframes", "Design system", "Prototypes"],
   },
   {
     slug: "web-development",
     title: "Web Development",
     short: "Snel, schoon en schaalbaar gebouwd.",
-    body: "We bouwen met moderne technologie. Razendsnelle laadtijden, vlekkeloze animaties en code waar je later op door kunt bouwen.",
-    points: ["Maatwerk front-end", "Headless CMS", "Webshops", "Integraties"],
+    body: "Als webbouwer werken we met moderne technologie: razendsnelle laadtijden, vlekkeloze animaties en code waar je later op door kunt bouwen. Van een website laten maken voor zzp of mkb tot maatwerk voor een groeiend platform.",
+    points: ["Maatwerk front-end", "Headless CMS", "Integraties", "Onderhoudbare code"],
+  },
+  {
+    slug: "webshops",
+    title: "Webshops & E-commerce",
+    short: "Een webshop laten maken die verkoopt.",
+    body: "We bouwen webshops die snel laden en makkelijk verkopen. Shopify of WooCommerce als dat past, maatwerk als dat beter werkt — inclusief productstructuur, betalingen en koppelingen met je voorraad of boekhouding.",
+    points: ["Shopify", "WooCommerce", "E-commerce design", "Betalingen & koppelingen"],
   },
   {
     slug: "branding",
@@ -34,7 +41,7 @@ export const services: Service[] = [
     slug: "logo-design",
     title: "Logo Design",
     short: "Eén vorm die alles zegt.",
-    body: "Een logo dat werkt op een gevel én op een favicon. Simpel, eigen en tijdbestendig.",
+    body: "Een logo laten ontwerpen dat werkt op een gevel én op een favicon. Simpel, eigen en tijdbestendig — met alle bestanden die je later nodig hebt.",
     points: ["Concepten", "Varianten", "Iconografie", "Bestandenpakket"],
   },
   {
@@ -47,22 +54,22 @@ export const services: Service[] = [
   {
     slug: "seo",
     title: "SEO",
-    short: "Gevonden worden op wat telt.",
-    body: "Technische SEO, content en structuur. We bouwen sites die zoekmachines begrijpen en bezoekers waarderen.",
+    short: "Hoger in Google komen op wat telt.",
+    body: "Zoekmachine optimalisatie die verder gaat dan een checklist: techniek, content en structuur. We bouwen sites die zoekmachines begrijpen en bezoekers waarderen, zodat je beter gevonden wordt in Google.",
     points: ["Technische SEO", "Zoekwoorden", "Content", "Rapportage"],
   },
   {
     slug: "local-seo",
     title: "Local SEO",
-    short: "Zichtbaar in heel Twente.",
-    body: "Van Enschede tot Almelo: we zorgen dat jullie bovenaan staan als iemand in de buurt zoekt.",
+    short: "Online vindbaarheid in heel Twente.",
+    body: "Van Enschede en Hengelo tot Almelo: we zorgen dat jullie bovenaan staan als iemand in de buurt zoekt. Lokale landingspagina's, een compleet Google Bedrijfsprofiel en reviews die vertrouwen geven.",
     points: ["Google Bedrijfsprofiel", "Lokale landingspagina's", "Reviews", "Vermeldingen"],
   },
   {
     slug: "ai-search",
     title: "AI Search (AEO & GEO)",
-    short: "Ook gevonden worden in AI-antwoorden.",
-    body: "Zoeken verandert. We maken jullie content leesbaar en citeerbaar voor AI-assistenten zoals ChatGPT en Google AI.",
+    short: "Vindbaar in ChatGPT en AI-antwoorden.",
+    body: "Zoeken verandert. Met answer engine optimalisation (AEO) en AI SEO maken we jullie content leesbaar en citeerbaar voor AI-assistenten zoals ChatGPT, Perplexity en Google AI Overviews.",
     points: ["Antwoordstructuur", "Gestructureerde data", "Bronautoriteit", "Monitoring"],
   },
   {
@@ -105,8 +112,11 @@ export const testimonials = [
 
 export const faqs = [
   { q: "Wat kost een website?", a: "Een complete site begint bij ongeveer 3.500 euro. Terwijl een kleine starterswebsite al vanaf 500 euro te realiseren is. Merk, webshop of maatwerk loopt hoger op. Na het kennismakingsgesprek krijgen jullie een vaste prijs, geen open eind. Doe ook onze gratis website scan om erachter te komen wat bij jou past!" },
+  { q: "Wat kost een website laten maken voor zzp of mkb?", a: "Voor zzp'ers en starters bouwen we een betaalbare website vanaf ongeveer 500 euro. Voor mkb en kleine bedrijven met meerdere pagina's, teksten en SEO zit je meestal tussen 1.500 en 3.500 euro. Je krijgt vooraf een vaste prijs." },
+  { q: "Hoe zorgen jullie dat we hoger in Google komen?", a: "We beginnen bij techniek en structuur, daarna zoekwoorden en content. Voor lokale bedrijven richten we ons op online vindbaarheid in Enschede, Hengelo en Almelo. Daarnaast maken we jullie content ook citeerbaar voor AI-assistenten, zodat je zichtbaar bent in ChatGPT en Google AI Overviews." },
   { q: "Hoe lang duurt het?", a: "Een landingspagina in twee weken, een volledige website meestal in vier tot zes weken. Snel kan, mits we samen snel beslissen." },
   { q: "Werken jullie alleen in Twente?", a: "We zitten in Twente en werken daar het liefst, maar onze klanten zitten door heel Nederland. Alles kan ook op afstand." },
+  { q: "Bouwen jullie ook webshops?", a: "Ja. We bouwen webshops in Shopify of WooCommerce, en maatwerk e-commerce als dat beter past. Inclusief productstructuur, betalingen en koppelingen." },
   { q: "Kunnen we zelf teksten en pagina's aanpassen?", a: "Ja. We leveren een eenvoudig CMS op en nemen jullie mee in hoe het werkt. Liever uit handen? Dan doen wij het onderhoud." },
   { q: "Doen jullie ook alleen een logo of huisstijl?", a: "Zeker. Merkwerk kan los van een website. Vaak groeit het daarna vanzelf door." },
 ];

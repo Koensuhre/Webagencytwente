@@ -12,13 +12,13 @@ const WebsiteScanExperience = lazy(() =>
 export const Route = createFileRoute("/website-scan")({
   head: () => ({
     meta: [
-      { title: "Gratis website scan — Web Agency Twente" },
+      { title: "Gratis website scan — beter gevonden worden in Google" },
       {
         name: "description",
         content:
-          "Binnen één minuut zie je waar de grootste online kansen van jouw website liggen. Een live meting plus persoonlijk advies uit Twente.",
+          "Binnen één minuut zie je waar de kansen liggen om hoger in Google te komen. Een live meting van je website SEO plus persoonlijk advies van Web Agency Twente.",
       },
-      { property: "og:title", content: "Gratis website scan — Web Agency Twente" },
+      { property: "og:title", content: "Gratis website scan — beter gevonden worden in Google" },
       {
         property: "og:description",
         content:
