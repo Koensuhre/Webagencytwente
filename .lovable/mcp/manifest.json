@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.2",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "web-agency-twente",
+      "version": "0.1.0",
+      "title": "Web Agency Twente"
+    },
+    "tools": [
+      {
+        "name": "list_services",
+        "title": "Diensten opvragen",
+        "description": "Geeft alle diensten van Web Agency Twente met slug, titel, korte omschrijving en speerpunten.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_service",
+        "title": "Dienst opvragen",
+        "description": "Geeft de details van één dienst op basis van de slug (bijv. 'seo' of 'webshops').",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Slug van de dienst, zoals 'web-design'."
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_projects",
+        "title": "Werk opvragen",
+        "description": "Geeft de gepubliceerde cases van Web Agency Twente en de klantenlijst.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_faqs",
+        "title": "Veelgestelde vragen",
+        "description": "Geeft de veelgestelde vragen met antwoorden (o.a. prijzen en doorlooptijd) en de werkwijze in stappen.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "scan_website",
+        "title": "Website scan",
+        "description": "Draait dezelfde gratis website scan als op de site: geeft per onderdeel (design, vindbaarheid, conversie) een korte analyse en waar beschikbaar scores.",
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 200,
+              "description": "Website-URL of bedrijfsnaam om te scannen."
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
