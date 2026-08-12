@@ -13,10 +13,14 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BedanktRouteImport } from './routes/bedankt'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DienstenRouteImport } from './routes/diensten'
+import { Route as McpRouteImport } from './routes/mcp'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
+import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -41,6 +45,11 @@ const DienstenRoute = DienstenRouteImport.update({
   path: '/diensten',
   getParentRoute: () => rootRouteImport,
 } as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OverOnsRoute = OverOnsRouteImport.update({
   id: '/over-ons',
   path: '/over-ons',
@@ -61,6 +70,24 @@ const WerkRoute = WerkRouteImport.update({
   path: '/werk',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char91DotmcpChar93ListToolsRoute =
+  Char91DotmcpChar93ListToolsRouteImport.update({
+    id: '/.mcp/list-tools',
+    path: '/.mcp/list-tools',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char91DotmcpChar93InvokeToolToolRoute =
+  Char91DotmcpChar93InvokeToolToolRouteImport.update({
+    id: '/.mcp/invoke-tool/$tool',
+    path: '/.mcp/invoke-tool/$tool',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   id: '/lovable/email/auth/preview',
   path: '/lovable/email/auth/preview',
@@ -83,10 +110,14 @@ export interface FileRoutesByFullPath {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/mcp': typeof McpRoute
   '/over-ons': typeof OverOnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -96,10 +127,14 @@ export interface FileRoutesByTo {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/mcp': typeof McpRoute
   '/over-ons': typeof OverOnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -110,10 +145,14 @@ export interface FileRoutesById {
   '/bedankt': typeof BedanktRoute
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRoute
+  '/mcp': typeof McpRoute
   '/over-ons': typeof OverOnsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -125,10 +164,14 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
+    | '/mcp'
     | '/over-ons'
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
+    | '/.mcp/invoke-tool/$tool'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -138,10 +181,14 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
+    | '/mcp'
     | '/over-ons'
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
+    | '/.mcp/invoke-tool/$tool'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -151,10 +198,14 @@ export interface FileRouteTypes {
     | '/bedankt'
     | '/contact'
     | '/diensten'
+    | '/mcp'
     | '/over-ons'
     | '/sitemap.xml'
     | '/website-scan'
     | '/werk'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
+    | '/.mcp/invoke-tool/$tool'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -165,10 +216,14 @@ export interface RootRouteChildren {
   BedanktRoute: typeof BedanktRoute
   ContactRoute: typeof ContactRoute
   DienstenRoute: typeof DienstenRoute
+  McpRoute: typeof McpRoute
   OverOnsRoute: typeof OverOnsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
+  Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
+  Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -204,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DienstenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/over-ons': {
       id: '/over-ons'
       path: '/over-ons'
@@ -230,6 +292,27 @@ declare module '@tanstack/react-router' {
       path: '/werk'
       fullPath: '/werk'
       preLoaderRoute: typeof WerkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.mcp/list-tools': {
+      id: '/.mcp/list-tools'
+      path: '/.mcp/list-tools'
+      fullPath: '/.mcp/list-tools'
+      preLoaderRoute: typeof Char91DotmcpChar93ListToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.mcp/invoke-tool/$tool': {
+      id: '/.mcp/invoke-tool/$tool'
+      path: '/.mcp/invoke-tool/$tool'
+      fullPath: '/.mcp/invoke-tool/$tool'
+      preLoaderRoute: typeof Char91DotmcpChar93InvokeToolToolRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/auth/preview': {
@@ -261,10 +344,15 @@ const rootRouteChildren: RootRouteChildren = {
   BedanktRoute: BedanktRoute,
   ContactRoute: ContactRoute,
   DienstenRoute: DienstenRoute,
+  McpRoute: McpRoute,
   OverOnsRoute: OverOnsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
+  Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
+  Char91DotwellKnownChar93OauthProtectedResourceRoute:
+    Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
