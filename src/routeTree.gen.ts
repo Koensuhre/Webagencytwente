@@ -16,7 +16,10 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as SeoTwenteRouteImport } from './routes/seo-twente'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as WebdesignEnschedeRouteImport } from './routes/webdesign-enschede'
+import { Route as WebshopLatenMakenAlmeloRouteImport } from './routes/webshop-laten-maken-almelo'
 import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
@@ -61,9 +64,24 @@ const OverOnsRoute = OverOnsRouteImport.update({
   path: '/over-ons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SeoTwenteRoute = SeoTwenteRouteImport.update({
+  id: '/seo-twente',
+  path: '/seo-twente',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebdesignEnschedeRoute = WebdesignEnschedeRouteImport.update({
+  id: '/webdesign-enschede',
+  path: '/webdesign-enschede',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebshopLatenMakenAlmeloRoute = WebshopLatenMakenAlmeloRouteImport.update({
+  id: '/webshop-laten-maken-almelo',
+  path: '/webshop-laten-maken-almelo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WebsiteScanRoute = WebsiteScanRouteImport.update({
@@ -119,7 +137,10 @@ export interface FileRoutesByFullPath {
   '/diensten': typeof DienstenRoute
   '/mcp': typeof McpRoute
   '/over-ons': typeof OverOnsRoute
+  '/seo-twente': typeof SeoTwenteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/webdesign-enschede': typeof WebdesignEnschedeRoute
+  '/webshop-laten-maken-almelo': typeof WebshopLatenMakenAlmeloRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -137,7 +158,10 @@ export interface FileRoutesByTo {
   '/diensten': typeof DienstenRoute
   '/mcp': typeof McpRoute
   '/over-ons': typeof OverOnsRoute
+  '/seo-twente': typeof SeoTwenteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/webdesign-enschede': typeof WebdesignEnschedeRoute
+  '/webshop-laten-maken-almelo': typeof WebshopLatenMakenAlmeloRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -156,7 +180,10 @@ export interface FileRoutesById {
   '/diensten': typeof DienstenRoute
   '/mcp': typeof McpRoute
   '/over-ons': typeof OverOnsRoute
+  '/seo-twente': typeof SeoTwenteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/webdesign-enschede': typeof WebdesignEnschedeRoute
+  '/webshop-laten-maken-almelo': typeof WebshopLatenMakenAlmeloRoute
   '/website-scan': typeof WebsiteScanRoute
   '/werk': typeof WerkRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -176,7 +203,10 @@ export interface FileRouteTypes {
     | '/diensten'
     | '/mcp'
     | '/over-ons'
+    | '/seo-twente'
     | '/sitemap.xml'
+    | '/webdesign-enschede'
+    | '/webshop-laten-maken-almelo'
     | '/website-scan'
     | '/werk'
     | '/.mcp/list-tools'
@@ -194,7 +224,10 @@ export interface FileRouteTypes {
     | '/diensten'
     | '/mcp'
     | '/over-ons'
+    | '/seo-twente'
     | '/sitemap.xml'
+    | '/webdesign-enschede'
+    | '/webshop-laten-maken-almelo'
     | '/website-scan'
     | '/werk'
     | '/.mcp/list-tools'
@@ -212,7 +245,10 @@ export interface FileRouteTypes {
     | '/diensten'
     | '/mcp'
     | '/over-ons'
+    | '/seo-twente'
     | '/sitemap.xml'
+    | '/webdesign-enschede'
+    | '/webshop-laten-maken-almelo'
     | '/website-scan'
     | '/werk'
     | '/.mcp/list-tools'
@@ -231,7 +267,10 @@ export interface RootRouteChildren {
   DienstenRoute: typeof DienstenRoute
   McpRoute: typeof McpRoute
   OverOnsRoute: typeof OverOnsRoute
+  SeoTwenteRoute: typeof SeoTwenteRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  WebdesignEnschedeRoute: typeof WebdesignEnschedeRoute
+  WebshopLatenMakenAlmeloRoute: typeof WebshopLatenMakenAlmeloRoute
   WebsiteScanRoute: typeof WebsiteScanRoute
   WerkRoute: typeof WerkRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
@@ -293,11 +332,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OverOnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seo-twente': {
+      id: '/seo-twente'
+      path: '/seo-twente'
+      fullPath: '/seo-twente'
+      preLoaderRoute: typeof SeoTwenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/webdesign-enschede': {
+      id: '/webdesign-enschede'
+      path: '/webdesign-enschede'
+      fullPath: '/webdesign-enschede'
+      preLoaderRoute: typeof WebdesignEnschedeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/webshop-laten-maken-almelo': {
+      id: '/webshop-laten-maken-almelo'
+      path: '/webshop-laten-maken-almelo'
+      fullPath: '/webshop-laten-maken-almelo'
+      preLoaderRoute: typeof WebshopLatenMakenAlmeloRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/website-scan': {
@@ -367,7 +427,10 @@ const rootRouteChildren: RootRouteChildren = {
   DienstenRoute: DienstenRoute,
   McpRoute: McpRoute,
   OverOnsRoute: OverOnsRoute,
+  SeoTwenteRoute: SeoTwenteRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  WebdesignEnschedeRoute: WebdesignEnschedeRoute,
+  WebshopLatenMakenAlmeloRoute: WebshopLatenMakenAlmeloRoute,
   WebsiteScanRoute: WebsiteScanRoute,
   WerkRoute: WerkRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
