@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 
 import { CtaSection } from "@/components/site/CtaSection";
 import { PageShell } from "@/components/site/PageShell";
@@ -73,6 +73,33 @@ function ServicesPage() {
           </Reveal>
         ))}
       </div>
+
+      <section className="mx-auto max-w-[1400px] px-5 pb-24 sm:px-8 sm:pb-36">
+        <h2 className="display text-4xl sm:text-6xl">In de regio</h2>
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+          Zoek je iets specifieks in jouw plaats? Deze pagina&apos;s gaan er dieper op in.
+        </p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <Link
+            to="/webdesign-enschede"
+            className="rounded-3xl border border-ink/15 p-6 text-lg font-semibold transition-colors hover:bg-ink hover:text-ink-foreground"
+          >
+            Webdesign Enschede <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
+            to="/seo-twente"
+            className="rounded-3xl border border-ink/15 p-6 text-lg font-semibold transition-colors hover:bg-ink hover:text-ink-foreground"
+          >
+            SEO Twente <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
+            to="/webshop-laten-maken-almelo"
+            className="rounded-3xl border border-ink/15 p-6 text-lg font-semibold transition-colors hover:bg-ink hover:text-ink-foreground"
+          >
+            Webshop laten maken Almelo <span aria-hidden="true">&rarr;</span>
+          </Link>
+        </div>
+      </section>
 
       <CtaSection />
     </PageShell>
