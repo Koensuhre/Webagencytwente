@@ -18,6 +18,9 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/diensten", changefreq: "monthly", priority: "0.9" },
           { path: "/werk", changefreq: "monthly", priority: "0.8" },
           { path: "/website-scan", changefreq: "monthly", priority: "0.8" },
+          { path: "/webdesign-enschede", changefreq: "monthly", priority: "0.8" },
+          { path: "/seo-twente", changefreq: "monthly", priority: "0.8" },
+          { path: "/webshop-laten-maken-almelo", changefreq: "monthly", priority: "0.8" },
           { path: "/over-ons", changefreq: "yearly", priority: "0.6" },
           { path: "/contact", changefreq: "yearly", priority: "0.7" },
         ];
