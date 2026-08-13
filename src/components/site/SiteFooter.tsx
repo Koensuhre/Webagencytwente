@@ -13,7 +13,7 @@ export function SiteFooter() {
           </p>
         </Reveal>
 
-        <div className="mt-8 sm:mt-12 grid gap-7 sm:gap-10 border-t border-ink-foreground/15 pt-10 sm:grid-cols-3">
+        <div className="mt-8 sm:mt-12 grid gap-7 sm:gap-10 border-t border-ink-foreground/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="text-sm text-ink-foreground/60">Praat met ons</p>
             <a
@@ -30,6 +30,18 @@ export function SiteFooter() {
             <p className="text-sm text-ink-foreground/60">Waar we zitten</p>
             <p className="mt-2 text-lg font-semibold">Enschede, Twente</p>
             <p className="text-sm text-ink-foreground/60">Werkzaam door heel Nederland</p>
+          </div>
+          <div className="flex flex-col items-start gap-3">
+            <p className="text-sm text-ink-foreground/60">Regio</p>
+            <Link to="/webdesign-enschede" className="hover:text-primary">
+              Webdesign Enschede
+            </Link>
+            <Link to="/seo-twente" className="hover:text-primary">
+              SEO Twente
+            </Link>
+            <Link to="/webshop-laten-maken-almelo" className="hover:text-primary">
+              Webshop laten maken Almelo
+            </Link>
           </div>
           <div className="flex flex-col items-start gap-3">
             <p className="text-sm text-ink-foreground/60">Pagina&apos;s</p>
