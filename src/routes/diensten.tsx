@@ -87,6 +87,24 @@ function ServicesPage() {
             Webdesign Enschede <span aria-hidden="true">&rarr;</span>
           </Link>
           <Link
+            to="/webdesign-hengelo"
+            className="rounded-3xl border border-ink/15 p-6 text-lg font-semibold transition-colors hover:bg-ink hover:text-ink-foreground"
+          >
+            Webdesign Hengelo <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
+            to="/website-laten-maken-twente"
+            className="rounded-3xl border border-ink/15 p-6 text-lg font-semibold transition-colors hover:bg-ink hover:text-ink-foreground"
+          >
+            Website laten maken Twente <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
+            to="/seo-specialist-enschede"
+            className="rounded-3xl border border-ink/15 p-6 text-lg font-semibold transition-colors hover:bg-ink hover:text-ink-foreground"
+          >
+            SEO specialist Enschede <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
             to="/seo-twente"
             className="rounded-3xl border border-ink/15 p-6 text-lg font-semibold transition-colors hover:bg-ink hover:text-ink-foreground"
           >
