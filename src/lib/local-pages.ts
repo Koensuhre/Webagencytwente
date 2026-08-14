@@ -5,6 +5,7 @@ export type LocalBlock = { title: string; text: string };
 export type LocalPage = {
   slug: string;
   serviceName: string;
+  breadcrumbLabel: string;
   areaServed: string[];
   metaTitle: string;
   metaDescription: string;
@@ -27,6 +28,7 @@ export const localPages: LocalPage[] = [
   {
     slug: "webdesign-enschede",
     serviceName: "Webdesign en website laten maken",
+    breadcrumbLabel: "Webdesign Enschede",
     areaServed: ["Enschede", "Twente", "Overijssel"],
     metaTitle: "Webdesign Enschede — website laten maken | Web Agency Twente",
     metaDescription:
@@ -96,6 +98,7 @@ export const localPages: LocalPage[] = [
   {
     slug: "seo-twente",
     serviceName: "SEO en online vindbaarheid",
+    breadcrumbLabel: "SEO Twente",
     areaServed: ["Twente", "Enschede", "Hengelo", "Almelo", "Overijssel"],
     metaTitle: "SEO Twente — beter gevonden worden in Google | Web Agency Twente",
     metaDescription:
@@ -165,6 +168,7 @@ export const localPages: LocalPage[] = [
   {
     slug: "webshop-laten-maken-almelo",
     serviceName: "Webshop laten maken",
+    breadcrumbLabel: "Webshop laten maken Almelo",
     areaServed: ["Almelo", "Twente", "Overijssel"],
     metaTitle: "Webshop laten maken in Almelo | Web Agency Twente",
     metaDescription:

@@ -10,6 +10,7 @@ const BASE_URL = "https://webagencytwente.nl";
 
 export function localPageHead(page: LocalPage) {
   const url = `${BASE_URL}/${page.slug}`;
+  const businessId = `${BASE_URL}/#organization`;
   return {
     meta: [
       { title: page.metaTitle },
@@ -28,16 +29,46 @@ export function localPageHead(page: LocalPage) {
           "@context": "https://schema.org",
           "@graph": [
             {
+              "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
+              "@id": businessId,
+              name: "Web Agency Twente",
+              url: BASE_URL,
+              email: "hallo@webagencytwente.nl",
+              telephone: "+31612345678",
+              image: `${BASE_URL}/favicon.png`,
+              priceRange: "€€",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Enschede",
+                addressRegion: "Overijssel",
+                addressCountry: "NL",
+              },
+              areaServed: page.areaServed.map((name) => ({ "@type": "Place", name })),
+              knowsAbout: [
+                "webdesign",
+                "web development",
+                "webshop laten maken",
+                "branding",
+                "SEO",
+                "local SEO",
+                "answer engine optimalisation",
+              ],
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+                { "@type": "ListItem", position: 2, name: "Diensten", item: `${BASE_URL}/diensten` },
+                { "@type": "ListItem", position: 3, name: page.breadcrumbLabel, item: url },
+              ],
+            },
+            {
               "@type": "Service",
               name: page.serviceName,
               serviceType: page.serviceName,
               url,
               areaServed: page.areaServed.map((name) => ({ "@type": "Place", name })),
-              provider: {
-                "@type": "ProfessionalService",
-                name: "Web Agency Twente",
-                url: BASE_URL,
-              },
+              provider: { "@id": businessId },
             },
             {
               "@type": "FAQPage",
