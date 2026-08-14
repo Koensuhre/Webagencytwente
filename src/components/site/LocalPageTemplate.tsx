@@ -89,6 +89,25 @@ export function LocalPageTemplate({ page }: { page: LocalPage }) {
   return (
     <PageShell>
       <section className="mx-auto max-w-[1400px] px-5 pt-36 pb-12 sm:px-8 sm:pt-40 sm:pb-16 lg:pt-48">
+        <nav aria-label="Kruimelpad" className="mb-6 text-sm text-muted-foreground">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <Link to="/diensten" className="hover:text-foreground">
+                Diensten
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" className="text-foreground">
+              {page.breadcrumbLabel}
+            </li>
+          </ol>
+        </nav>
         <Reveal>
           <p className="text-xs font-bold tracking-[0.18em] text-primary uppercase">{page.eyebrow}</p>
         </Reveal>
