@@ -36,8 +36,17 @@ export function SiteFooter() {
             <Link to="/webdesign-enschede" className="hover:text-primary">
               Webdesign Enschede
             </Link>
+            <Link to="/webdesign-hengelo" className="hover:text-primary">
+              Webdesign Hengelo
+            </Link>
+            <Link to="/website-laten-maken-twente" className="hover:text-primary">
+              Website laten maken Twente
+            </Link>
             <Link to="/seo-twente" className="hover:text-primary">
               SEO Twente
+            </Link>
+            <Link to="/seo-specialist-enschede" className="hover:text-primary">
+              SEO specialist Enschede
             </Link>
             <Link to="/webshop-laten-maken-almelo" className="hover:text-primary">
               Webshop laten maken Almelo
