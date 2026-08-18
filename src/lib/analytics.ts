@@ -10,7 +10,6 @@ const measurementId = import.meta.env['VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_A
   | undefined;
 
 let initialized = false;
-let lastTrackedPath: string | null = null;
 
 // gtag.js only processes pushes of the `arguments` object — a plain array push
 // is silently ignored. Keep this as a non-arrow function.
@@ -31,21 +30,14 @@ export function initAnalytics() {
   document.head.appendChild(script);
 
   gtag("js", new Date());
-  gtag("config", measurementId, { send_page_view: false });
+  // GA4 enhanced measurement sends the initial page_view and one per SPA
+  // history change, so no manual page_view is needed (and adding one would
+  // double-count).
+  gtag("config", measurementId);
 }
 
-export function trackPageView(path: string, title?: string) {
-  if (!measurementId) return;
-  // React StrictMode (and remounts) can fire the route effect twice for the
-  // same path; skip the repeat so GA4 never records a duplicate page_view.
-  if (path === lastTrackedPath) return;
-  lastTrackedPath = path;
-  gtag("event", "page_view", {
-    page_path: path,
-    page_location: typeof window !== "undefined" ? window.location.href : undefined,
-    page_title: title ?? (typeof document !== "undefined" ? document.title : undefined),
-  });
-}
+// Kept for call sites; gtag itself tracks page views, so this is a no-op.
+export function trackPageView(_path: string, _title?: string) {}
 
 export function trackEvent(name: string, params: Record<string, unknown> = {}) {
   if (!measurementId) return;
