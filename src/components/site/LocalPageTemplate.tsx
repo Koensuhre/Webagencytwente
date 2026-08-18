@@ -33,8 +33,8 @@ export function localPageHead(page: LocalPage) {
               "@id": businessId,
               name: "Web Agency Twente",
               url: BASE_URL,
-              email: "hallo@webagencytwente.nl",
-              telephone: "+31612345678",
+              email: "info@webagencytwente.nl",
+              telephone: "+31623816297",
               image: `${BASE_URL}/favicon.png`,
               priceRange: "€€",
               address: {

@@ -17,12 +17,12 @@ export function SiteFooter() {
           <div>
             <p className="text-sm text-ink-foreground/60">Praat met ons</p>
             <a
-              href="mailto:hallo@webagencytwente.nl"
+              href="mailto:info@webagencytwente.nl"
               className="mt-2 block text-lg font-semibold hover:text-primary"
             >
               info@webagencytwente.nl
             </a>
-            <a href="tel:+31612345678" className="mt-1 block text-lg font-semibold hover:text-primary">
+            <a href="tel:+31623816297" className="mt-1 block text-lg font-semibold hover:text-primary">
               +31 6 23 81 62 97
             </a>
           </div>

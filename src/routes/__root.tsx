@@ -128,8 +128,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "Web Agency Twente",
           description:
             "Webdesign, web development, webshops, branding, logo ontwerp, SEO en AI search optimalisatie voor ondernemers in Twente en Overijssel.",
-          email: "hallo@webagencytwente.nl",
-          telephone: "+31612345678",
+          email: "info@webagencytwente.nl",
+          telephone: "+31623816297",
           areaServed: [
             { "@type": "City", name: "Enschede" },
             { "@type": "City", name: "Hengelo" },
