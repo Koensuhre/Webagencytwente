@@ -11,10 +11,13 @@ const measurementId = import.meta.env['VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_A
 
 let initialized = false;
 
-function gtag(...args: unknown[]) {
+// gtag.js only processes pushes of the `arguments` object — a plain array push
+// is silently ignored. Keep this as a non-arrow function.
+function gtag(..._args: unknown[]) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer ?? [];
-  window.dataLayer.push(args);
+  // eslint-disable-next-line prefer-rest-params
+  window.dataLayer.push(arguments);
 }
 
 export function initAnalytics() {
