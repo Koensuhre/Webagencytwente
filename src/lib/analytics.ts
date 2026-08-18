@@ -10,6 +10,7 @@ const measurementId = import.meta.env['VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_A
   | undefined;
 
 let initialized = false;
+let lastTrackedPath: string | null = null;
 
 // gtag.js only processes pushes of the `arguments` object — a plain array push
 // is silently ignored. Keep this as a non-arrow function.
