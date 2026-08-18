@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Website, webshop of SEO nodig in Twente? Doe de korte intake of stuur ons direct een bericht — je hoort binnen één werkdag persoonlijk van ons.",
+          "Website, webshop of SEO nodig? Doe de korte intake of stuur ons direct een bericht — je hoort binnen één werkdag persoonlijk van ons.",
       },
       { property: "og:title", content: "Contact — website laten maken in Twente" },
       {
