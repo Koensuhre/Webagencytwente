@@ -35,6 +35,10 @@ export function initAnalytics() {
 
 export function trackPageView(path: string, title?: string) {
   if (!measurementId) return;
+  // React StrictMode (and remounts) can fire the route effect twice for the
+  // same path; skip the repeat so GA4 never records a duplicate page_view.
+  if (path === lastTrackedPath) return;
+  lastTrackedPath = path;
   gtag("event", "page_view", {
     page_path: path,
     page_location: typeof window !== "undefined" ? window.location.href : undefined,
