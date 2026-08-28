@@ -1,21 +1,21 @@
-# Contactgegevens corrigeren
+# Nieuwe social preview-afbeelding (og:image) voor alle pagina's
 
-Doel: overal exact `info@webagencytwente.nl` en `+31623816297`. Geen wijzigingen aan design, content, tracking of routing.
+## Doel
+De huidige og:image (een oude storage-URL) vervangen door een nieuw, sterk herkenbaar branded beeld in de Coral Blaze-stijl, dat geldt voor de hele site.
 
-## Gevonden fouten (geverifieerd in de code)
+## Stappen
 
-- `src/components/site/SiteFooter.tsx`: mailto-link wijst naar `hallo@webagencytwente.nl` (de zichtbare tekst is al correct), en de tel-link is `tel:+31612345678` terwijl er `+31 6 23 81 62 97` staat.
-- `src/routes/__root.tsx` (Organization/ProfessionalService JSON-LD): `email: "info@webagencytwente.nl"`, `telephone: "+31623816297"`.
-- `src/components/site/LocalPageTemplate.tsx` (LocalBusiness JSON-LD op alle lokale SEO-pagina's): dezelfde twee foute waarden.
+1. **Afbeelding ontwerpen** — genereer een 1200×630 OG-afbeelding: off-white `#f5f3ee` achtergrond, grote zwarte Anton-headline "Web Agency Twente — Websites die je onthoudt", koraal/oranje/paarse vormen uit het bestaande palet. Opgeslagen als `public/og-image.png` (zodat hij via een stabiele, absolute URL bereikbaar is).
 
-Al correct en niet aangeraakt: contactpagina (`src/routes/contact.tsx`), formulier-notificaties (`contact.functions.ts`, `scan.functions.ts`, `internal-notification.tsx`), e-maildomeinen in `send-email.ts`.
+2. **Metadata aanpassen**
+   - `src/routes/__root.tsx`: `og:image` en `twitter:image` vervangen door `https://webagencytwente.nl/og-image.png`, plus `og:image:width`/`og:image:height` (1200×630) en `og:image:alt`. Dit geldt als default voor álle pagina's (er zijn geen leaf-routes met een eigen og:image).
+   - Verder niets aan titels, descriptions, canonical, JSON-LD, analytics of andere code wijzigen.
 
-## Aanpassingen
+3. **Controleren** — preview HTML checken op de nieuwe absolute URL; bevestigen dat de afbeelding publiek bereikbaar is.
 
-1. Footer: `href="mailto:info@webagencytwente.nl"`, `href="tel:+31623816297"`.
-2. Root JSON-LD: `email: "info@webagencytwente.nl"`, `telephone: "+31623816297"`.
-3. LocalPageTemplate JSON-LD: idem.
+## Technisch
+- Absolute URL vereist voor social crawlers: `https://webagencytwente.nl/og-image.png`.
+- Bestaande `twitter:card: summary_large_image` blijft, dus de nieuwe afbeelding toont groot.
 
-## Controle na afloop
-
-Codebase opnieuw doorzoeken op `hallo@`, `12345678`, `0612` en afwijkende `tel:`/`mailto:`-varianten, plus een typecheck. Daarna een korte samenvatting van vindplaatsen, wijzigingen en de eindcontrole.
+## Let op
+Crawlers (Facebook/LinkedIn/WhatsApp) cachen de oude preview; na publicatie kan het even duren. Eventueel verversen via de Facebook Sharing Debugger / LinkedIn Post Inspector.
