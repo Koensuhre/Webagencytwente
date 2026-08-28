@@ -93,8 +93,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Web Agency Twente — Websites die je onthoudt" },
       { property: "og:description", content: "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk." },
       { name: "twitter:description", content: "Wij ontwerpen en bouwen opvallende websites, merken en SEO voor ondernemers in Twente en daarbuiten. Bekijk ons werk." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0faec0a-139b-492e-8a74-86c49a0194ed" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b0faec0a-139b-492e-8a74-86c49a0194ed" },
+      { property: "og:image", content: "https://webagencytwente.nl/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Web Agency Twente — Websites die je onthoudt" },
+      { name: "twitter:image", content: "https://webagencytwente.nl/og-image.png" },
     ],
     links: [
       {
