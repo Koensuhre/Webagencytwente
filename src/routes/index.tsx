@@ -21,16 +21,16 @@ import { clients, faqs, processSteps, projects, services, testimonials } from "@
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Web Agency Twente — Webdesign & SEO in Twente" },
+      { title: "Webdesign Twente | Website laten maken — Web Agency Twente" },
       {
         name: "description",
         content:
-          "Website laten maken in Twente? Wij zijn Web Agency Twente: webdesign, webshops, branding en SEO voor ondernemers in Enschede, Hengelo, Almelo en heel Overijssel.",
+          "Website laten maken in Twente? Web Agency Twente ontwerpt en bouwt websites, webshops en SEO voor ondernemers in Enschede, Hengelo en Almelo. Vraag een gratis website scan aan.",
       },
-      { property: "og:title", content: "Web Agency Twente — Webdesign & SEO in Twente" },
+      { property: "og:title", content: "Webdesign Twente | Website laten maken — Web Agency Twente" },
       {
         property: "og:description",
-        content: "Webdesign, webshops, branding en SEO voor ondernemers in Enschede, Hengelo, Almelo en heel Overijssel.",
+        content: "Website laten maken in Twente? Websites, webshops en SEO voor ondernemers in Enschede, Hengelo en Almelo. Vraag een gratis website scan aan.",
       },
       { property: "og:url", content: "/" },
     ],
