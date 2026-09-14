@@ -34,7 +34,7 @@ export function ChatWidget() {
         }}
         aria-label={open ? "Sluit chat" : "Open chat"}
         aria-expanded={open}
-        className="relative ml-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand text-white shadow-lg hover:bg-teal-800"
+        className="relative ml-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-teal-800"
       >
         {notice && !open && (
           <span
