@@ -126,7 +126,7 @@ export function ChatPanel({
           <div key={m.id} className={`mb-4 ${m.role === "user" ? "text-right" : "text-left"}`}>
             <div
               className={`inline-block max-w-[90%] rounded-2xl px-3 py-2 text-left text-sm ${
-                m.role === "user" ? "bg-brand text-white" : "bg-slate-100 text-slate-800"
+                m.role === "user" ? "bg-primary text-primary-foreground" : "bg-slate-100 text-slate-800"
               }`}
             >
               {m.content}
@@ -140,7 +140,7 @@ export function ChatPanel({
                   <button
                     key={c}
                     onClick={() => choice(c)}
-                    className="rounded-full border border-brand px-3 py-1.5 text-sm font-medium text-brand hover:bg-teal-50"
+                    className="rounded-full border border-primary px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary hover:text-primary-foreground"
                   >
                     {c}
                   </button>
@@ -151,7 +151,7 @@ export function ChatPanel({
         ))}
         {typing && <div className="inline-block rounded-2xl bg-slate-100 px-3 py-2 text-sm">Aan het typen…</div>}
         {form && (
-          <div className="mt-3 rounded-xl border border-teal-100 p-4">
+          <div className="mt-3 rounded-xl border border-primary/30 p-4">
             <LeadForm conversation={messages} onSuccess={success} onCancel={() => setForm(false)} />
           </div>
         )}
@@ -183,7 +183,7 @@ export function ChatPanel({
             placeholder="Typ je vraag…"
             className="min-h-10 flex-1 resize-none rounded-md border border-slate-300 p-2"
           />
-          <button aria-label="Verstuur bericht" className="rounded-md bg-brand p-2 text-white">
+          <button aria-label="Verstuur bericht" className="rounded-md bg-primary p-2 text-white">
             <ArrowUp />
           </button>
         </div>

@@ -102,7 +102,7 @@ export function LeadForm({
             {error}
           </p>
         )}
-        <button disabled={sending} onClick={send} className="rounded bg-brand px-4 py-2 text-white">
+        <button disabled={sending} onClick={send} className="rounded bg-primary px-4 py-2 text-white">
           {sending ? "Versturen…" : "Verstuur aanvraag"}
         </button>{" "}
         <button onClick={() => setReview(false)} className="underline">
@@ -126,7 +126,7 @@ export function LeadForm({
               placeholder="https://jouwdomein.nl (optioneel)"
               className="w-full rounded border p-2"
             />
-            <button onClick={() => setI(3)} className="rounded bg-brand px-4 py-2 text-white">
+            <button onClick={() => setI(3)} className="rounded bg-primary px-4 py-2 text-white">
               Volgende
             </button>
           </>
@@ -139,7 +139,7 @@ export function LeadForm({
                   set(k, x);
                   setI((n) => n + 1);
                 }}
-                className="rounded-full border border-brand px-3 py-2 text-sm text-brand"
+                className="rounded-full border border-primary px-3 py-2 text-sm text-primary"
               >
                 {x}
               </button>
@@ -198,7 +198,7 @@ export function LeadForm({
           const p = validate();
           p.success ? setReview(true) : setError(p.error.issues[0]?.message || "Controleer je gegevens.");
         }}
-        className="rounded bg-brand px-4 py-2 text-white"
+        className="rounded bg-primary px-4 py-2 text-white"
       >
         Bekijk samenvatting
       </button>
