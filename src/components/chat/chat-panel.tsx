@@ -1,21 +1,26 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { ArrowUp, Bot, X } from "lucide-react";
 import type { ChatMessage, Lead } from "@/types";
 import { LeadForm } from "./lead-form";
+
+const welcomeChoices = [
+  "Kunnen jullie een nieuwe website maken?",
+  "Maken jullie ook webshops?",
+  "Helpen jullie met SEO?",
+  "Wat kost een website?",
+];
+
+const welcomeActions = ["Laat mijn gegevens achter", "Gratis website scan"];
 
 const initial: ChatMessage = {
   id: "welcome",
   role: "assistant",
   content:
-    "Hallo! 👋 Ik help je graag met vragen over websites, webshops, branding, marketing en samenwerking. Waarmee kan ik je helpen?",
+    "Hallo! 👋 Ik beantwoord vragen over websites, webshops, SEO, prijzen en samenwerken. Kies een vraag hieronder of typ je eigen vraag.",
   createdAt: new Date().toISOString(),
-  choices: [
-    "Ik wil een nieuwe website",
-    "Ik wil meer leads",
-    "Wat kost een website?",
-    "Bekijk jullie diensten",
-    "Ik wil iemand spreken",
-  ],
+  choices: welcomeChoices,
+  actions: welcomeActions,
 };
 
 export function ChatPanel({
@@ -25,6 +30,7 @@ export function ChatPanel({
   onClose?: () => void;
   embedded?: boolean;
 }) {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<ChatMessage[]>([initial]);
   const [text, setText] = useState("");
   const [typing, setTyping] = useState(false);
@@ -52,20 +58,22 @@ export function ChatPanel({
     input.current?.focus();
   }, []);
 
-  const add = (role: ChatMessage["role"], content: string, choices?: string[]) =>
+  const add = (
+    role: ChatMessage["role"],
+    content: string,
+    choices?: string[],
+    actions?: string[],
+  ) =>
     setMessages((p) => [
       ...p,
-      { id: crypto.randomUUID(), role, content, createdAt: new Date().toISOString(), choices },
+      { id: crypto.randomUUID(), role, content, createdAt: new Date().toISOString(), choices, actions },
     ]);
 
   async function send(value = text) {
     if (!value.trim() || typing) return;
     setText("");
+    setForm(false);
     add("user", value);
-    if (/iemand spreken|gegevens achterlaten|offerte|nieuwe website|meer leads|prijs|kosten/i.test(value.toLowerCase())) {
-      setForm(true);
-      return;
-    }
     setTyping(true);
     try {
       const res = await fetch("/api/chat", {
@@ -73,35 +81,68 @@ export function ChatPanel({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: value }),
       });
-      const data = (await res.json()) as { answer: string; choices?: string[]; qualify?: boolean };
+      const data = (await res.json()) as { answer: string; choices?: string[]; actions?: string[] };
       if (!res.ok) throw Error();
-      add("assistant", data.answer, data.choices);
-      if (data.qualify) setForm(true);
+      add("assistant", data.answer, data.choices, data.actions);
     } catch {
       add(
         "assistant",
-        "Er is technisch iets misgegaan. Je kunt ons bereiken via info@webagencytwente.nl.",
+        "Er is technisch iets misgegaan. Je kunt ons bereiken via info@webagencytwente.nl of 06 23 81 62 97.",
+        [],
+        ["Stuur een e-mail", "Bel ons"],
       );
     } finally {
       setTyping(false);
     }
   }
 
+  const actionHandlers: Record<string, () => void> = {
+    "Laat mijn gegevens achter": () => {
+      setForm(true);
+      add("assistant", "Top! Ik stel je een paar korte vragen, dan kan een collega je gericht helpen.");
+    },
+    "Gratis website scan": () => {
+      onClose?.();
+      void navigate({ to: "/website-scan" });
+    },
+    "Bekijk onze diensten": () => {
+      onClose?.();
+      void navigate({ to: "/diensten" });
+    },
+    "Bekijk ons werk": () => {
+      onClose?.();
+      void navigate({ to: "/werk" });
+    },
+    "Naar de contactpagina": () => {
+      onClose?.();
+      void navigate({ to: "/contact" });
+    },
+    "Stuur een e-mail": () => {
+      window.location.href = "mailto:info@webagencytwente.nl";
+    },
+    "Bel ons": () => {
+      window.location.href = "tel:+31623816297";
+    },
+    "Terug naar het begin": () => {
+      setForm(false);
+      add("assistant", "Geen probleem. Kies een onderwerp of stel je eigen vraag.", welcomeChoices, welcomeActions);
+    },
+  };
+
   function choice(value: string) {
-    if (value === "Plan een gesprek") window.open("https://cal.com", "_blank", "noopener,noreferrer");
-    else if (value === "Stuur een e-mail") window.location.href = "mailto:hello@studionoord.example";
-    else if (value === "Bel ons") window.location.href = "tel:+31201234567";
-    else if (value === "Terug naar veelgestelde vragen") add("assistant", "Kies een onderwerp of stel je vraag.", initial.choices);
+    const handler = actionHandlers[value];
+    if (handler) handler();
     else send(value);
   }
 
   function success(lead: Lead) {
     setForm(false);
-    add("assistant", `Bedankt, ${lead.name}! We hebben je aanvraag ontvangen. We nemen zo snel mogelijk contact met je op.`, [
-      "Plan een gesprek",
-      "Bekijk ons portfolio",
-      "Terug naar de website",
-    ]);
+    add(
+      "assistant",
+      `Bedankt, ${lead.name}! Je aanvraag staat bij ons binnen. We nemen zo snel mogelijk contact met je op via ${lead.email}.`,
+      ["Hoe werkt samenwerken?", "Hoe lang duurt een websiteproject?"],
+      ["Bekijk ons werk", "Terug naar het begin"],
+    );
   }
 
   return (
@@ -134,13 +175,26 @@ export function ChatPanel({
             <time className="mt-1 block text-xs text-slate-500">
               {new Date(m.createdAt).toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" })}
             </time>
-            {m.choices && (
+            {m.choices && m.choices.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-2">
                 {m.choices.map((c) => (
                   <button
                     key={c}
                     onClick={() => choice(c)}
-                    className="rounded-full border border-primary px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary hover:text-primary-foreground"
+                    className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700 hover:border-primary hover:text-primary"
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            )}
+            {m.actions && m.actions.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {m.actions.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => choice(c)}
+                    className="rounded-full border border-primary bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-accent hover:border-accent"
                   >
                     {c}
                   </button>

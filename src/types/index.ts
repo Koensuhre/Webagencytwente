@@ -6,6 +6,7 @@ export type ChatMessage = {
   content: string;
   createdAt: string;
   choices?: string[] | undefined;
+  actions?: string[] | undefined;
 };
 
 export type LeadLabel = "Koud" | "Warm" | "Heet";
@@ -38,6 +39,8 @@ export type Faq = {
   question: string;
   answer: string;
   keywords: string[];
+  follow?: string[];
+  actions?: string[];
   cta?: string;
   href?: string;
 };
