@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { leadSchema, type LeadInput } from "@/lib/validation";
 import type { ChatMessage, Lead } from "@/types";
+import { trackEvent } from "@/lib/analytics";
 
 const steps: [keyof LeadInput, string, string[]][] = [
   [
@@ -78,7 +79,17 @@ export function LeadForm({
       });
       const x = (await r.json()) as Lead | { error: string };
       if (!r.ok) throw Error("error" in x ? x.error : "Opslaan mislukt");
-      onSuccess(x as Lead);
+      const lead = x as Lead;
+      trackEvent("chatbot_lead", {
+        method: "chatbot",
+        service: lead.service,
+        budget: lead.budget,
+        timeline: lead.timeline,
+        lead_label: lead.label,
+        lead_score: lead.score,
+      });
+      trackEvent("generate_lead", { method: "chatbot", value: lead.score, currency: "EUR" });
+      onSuccess(lead);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Er ging iets mis.");
     } finally {

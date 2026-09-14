@@ -10,7 +10,9 @@ function readEnv(name: string) {
 }
 
 export function isAdminKey(key: string | null) {
-  return key === (readEnv("ADMIN_DEMO_PASSWORD") || "demo-admin");
+  const expected = readEnv("ADMIN_DASHBOARD_PASSWORD") || readEnv("ADMIN_DEMO_PASSWORD");
+  if (!expected || !key) return false;
+  return key === expected;
 }
 
 export async function listLeadsForAdmin(adminKey: string | null) {
