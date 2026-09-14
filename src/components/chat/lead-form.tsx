@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { leadSchema, type LeadInput } from "@/lib/validation";
 import type { ChatMessage, Lead } from "@/types";
+import { trackEvent } from "@/lib/analytics";
 
 const steps: [keyof LeadInput, string, string[]][] = [
   [
