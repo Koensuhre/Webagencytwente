@@ -5,7 +5,7 @@ export type ChatMessage = {
   role: MessageRole;
   content: string;
   createdAt: string;
-  choices?: string[];
+  choices?: string[] | undefined;
 };
 
 export type LeadLabel = "Koud" | "Warm" | "Heet";
