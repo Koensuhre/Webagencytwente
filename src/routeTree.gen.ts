@@ -27,6 +27,8 @@ import { Route as WebsiteScanRouteImport } from './routes/website-scan'
 import { Route as WerkRouteImport } from './routes/werk'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiLeadsRouteImport } from './routes/api/leads'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
@@ -124,6 +126,16 @@ const Char91DotwellKnownChar93OauthProtectedResourceRoute =
     path: '/.well-known/oauth-protected-resource',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiLeadsRoute = ApiLeadsRouteImport.update({
+  id: '/api/leads',
+  path: '/api/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Char91DotmcpChar93InvokeToolToolRoute =
   Char91DotmcpChar93InvokeToolToolRouteImport.update({
     id: '/.mcp/invoke-tool/$tool',
@@ -166,6 +178,8 @@ export interface FileRoutesByFullPath {
   '/werk': typeof WerkRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/chat': typeof ApiChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -190,6 +204,8 @@ export interface FileRoutesByTo {
   '/werk': typeof WerkRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/chat': typeof ApiChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -215,6 +231,8 @@ export interface FileRoutesById {
   '/werk': typeof WerkRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/chat': typeof ApiChatRoute
+  '/api/leads': typeof ApiLeadsRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -241,6 +259,8 @@ export interface FileRouteTypes {
     | '/werk'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/chat'
+    | '/api/leads'
     | '/.mcp/invoke-tool/$tool'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -265,6 +285,8 @@ export interface FileRouteTypes {
     | '/werk'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/chat'
+    | '/api/leads'
     | '/.mcp/invoke-tool/$tool'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -289,6 +311,8 @@ export interface FileRouteTypes {
     | '/werk'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/chat'
+    | '/api/leads'
     | '/.mcp/invoke-tool/$tool'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -314,6 +338,8 @@ export interface RootRouteChildren {
   WerkRoute: typeof WerkRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  ApiChatRoute: typeof ApiChatRoute
+  ApiLeadsRoute: typeof ApiLeadsRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
@@ -448,6 +474,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/leads': {
+      id: '/api/leads'
+      path: '/api/leads'
+      fullPath: '/api/leads'
+      preLoaderRoute: typeof ApiLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/.mcp/invoke-tool/$tool': {
       id: '/.mcp/invoke-tool/$tool'
       path: '/.mcp/invoke-tool/$tool'
@@ -499,6 +539,8 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  ApiChatRoute: ApiChatRoute,
+  ApiLeadsRoute: ApiLeadsRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
