@@ -113,7 +113,7 @@ export function ChatPanel({
     >
       <header className="flex items-center justify-between bg-ink px-4 py-3 text-white">
         <span className="flex items-center gap-2 font-semibold">
-          <Bot aria-hidden="true" /> Studio Noord assistent
+          <Bot aria-hidden="true" /> Web Agency Twente assistent
         </span>
         {onClose && (
           <button onClick={onClose} aria-label="Chat sluiten" className="rounded p-1 hover:bg-white/15">
