@@ -4,7 +4,7 @@ import type { Faq } from "@/types";
 const normalize = (value: string) =>
   value.toLocaleLowerCase("nl-NL").replace(/[^a-z0-9à-ÿ€\s-]/g, " ");
 
-export function matchFaq(input: string): { faq?: Faq; confidence: number } {
+export function matchFaq(input: string): { faq?: Faq | undefined; confidence: number } {
   const text = normalize(input);
   if (!text.trim()) return { confidence: 0 };
 

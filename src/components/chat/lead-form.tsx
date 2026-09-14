@@ -113,7 +113,7 @@ export function LeadForm({
   }
 
   if (i < 5) {
-    const [k, q, opts] = steps[i];
+    const [k, q, opts] = steps[i] as [keyof LeadInput, string, string[]];
     return (
       <section className="space-y-3">
         <p className="text-sm text-slate-600">Vraag {i + 1} van 5. Dit helpt ons je gerichter te adviseren.</p>
