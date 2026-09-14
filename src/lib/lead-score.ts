@@ -5,9 +5,9 @@ type ScoreInput = {
   timeline: string;
   service: string;
   goal: string;
-  websiteUrl?: string;
-  phone?: string;
-  notes?: string;
+  websiteUrl?: string | undefined;
+  phone?: string | undefined;
+  notes?: string | undefined;
 };
 
 export function scoreLead(lead: ScoreInput): { score: number; label: LeadLabel } {
