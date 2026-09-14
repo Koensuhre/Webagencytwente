@@ -5,7 +5,7 @@ export type ChatMessage = {
   role: MessageRole;
   content: string;
   createdAt: string;
-  choices?: string[];
+  choices?: string[] | undefined;
 };
 
 export type LeadLabel = "Koud" | "Warm" | "Heet";
@@ -16,15 +16,15 @@ export type Lead = {
   createdAt: string;
   name: string;
   email: string;
-  phone?: string;
-  company?: string;
+  phone?: string | undefined;
+  company?: string | undefined;
   service: string;
   goal: string;
   hasWebsite: string;
-  websiteUrl?: string;
+  websiteUrl?: string | undefined;
   budget: string;
   timeline: string;
-  notes?: string;
+  notes?: string | undefined;
   consent: boolean;
   score: number;
   label: LeadLabel;

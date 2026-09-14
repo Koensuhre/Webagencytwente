@@ -3,7 +3,7 @@ import { matchFaq, needsQualification } from "@/lib/intent-matcher";
 export type ChatReply = {
   answer: string;
   choices: string[];
-  href?: string;
+  href?: string | undefined;
   qualify: boolean;
 };
 

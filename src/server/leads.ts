@@ -48,6 +48,39 @@ export async function createLeadFromBody(raw: unknown) {
     };
     await saveLead(lead);
 
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      const conversationText = (lead.conversation ?? [])
+        .map((m) => `${m.role === "user" ? "Bezoeker" : "Assistent"}: ${m.content}`)
+        .join("\n");
+      await sendTemplateEmail("contact-notification", "info@webagencytwente.nl", {
+        templateData: {
+          heading: "Nieuwe aanvraag via de chatbot",
+          intro: "Verstuurd via de chatbot op de website.",
+          fields: [
+            { label: "Naam", value: lead.name },
+            { label: "E-mail", value: lead.email },
+            { label: "Telefoon", value: lead.phone || "—" },
+            { label: "Bedrijf", value: lead.company || "—" },
+            { label: "Dienst", value: lead.service || "—" },
+            { label: "Doel", value: lead.goal || "—" },
+            { label: "Huidige website", value: lead.hasWebsite || "—" },
+            { label: "Website URL", value: lead.websiteUrl || "—" },
+            { label: "Budget", value: lead.budget || "—" },
+            { label: "Startmoment", value: lead.timeline || "—" },
+            { label: "Score", value: `${lead.score} (${lead.label})` },
+          ],
+          message: [lead.notes ? `Toelichting: ${lead.notes}` : "", conversationText ? `Gesprek:\n${conversationText}` : ""]
+            .filter(Boolean)
+            .join("\n\n"),
+        },
+        idempotencyKey: `chat-lead-${lead.id}`,
+        replyTo: lead.email,
+      });
+    } catch (mailError) {
+      console.error("[leads] chat notification email failed", mailError);
+    }
+
     const hook = readEnv("LEAD_WEBHOOK_URL");
     if (hook) {
       fetch(hook, {
@@ -62,7 +95,7 @@ export async function createLeadFromBody(raw: unknown) {
     return {
       status: 500 as const,
       body: {
-        error: "Er ging iets mis. Probeer opnieuw of neem contact op via hello@studionoord.example.",
+        error: "Er ging iets mis. Probeer opnieuw of neem contact op via info@webagencytwente.nl.",
       },
     };
   }
