@@ -39,7 +39,7 @@ export function ChatWidget() {
         {notice && !open && (
           <span
             aria-label="Nieuw bericht"
-            className="absolute right-1 top-1 h-3 w-3 rounded-full bg-amber-400 ring-2 ring-white"
+            className="absolute right-1 top-1 h-3.5 w-3.5 animate-pulse rounded-full bg-accent ring-2 ring-background"
           />
         )}
         <MessageCircle aria-hidden="true" />
