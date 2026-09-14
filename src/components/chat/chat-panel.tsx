@@ -80,7 +80,7 @@ export function ChatPanel({
     } catch {
       add(
         "assistant",
-        "Er is technisch iets misgegaan. Je kunt ons bereiken via hello@studionoord.example of 020 123 45 67.",
+        "Er is technisch iets misgegaan. Je kunt ons bereiken via info@webagencytwente.nl.",
       );
     } finally {
       setTyping(false);
@@ -106,7 +106,7 @@ export function ChatPanel({
 
   return (
     <section
-      aria-label="Chat met Studio Noord"
+      aria-label="Chat met Web Agency Twente"
       className={`flex h-full flex-col overflow-hidden bg-white ${
         embedded ? "rounded-xl border shadow-sm" : "rounded-2xl shadow-2xl"
       }`}
