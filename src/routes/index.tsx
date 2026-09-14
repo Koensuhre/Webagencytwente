@@ -16,7 +16,7 @@ import { ScanCtaSection } from "@/components/site/ScanCtaSection";
 import { Magnetic, Reveal, RevealLines } from "@/components/site/motion-primitives";
 
 import { clients, faqs, processSteps, projects, services, testimonials } from "@/lib/site-data";
-
+import { ChatWidget } from "../components/chat/chat-widget";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -75,11 +75,10 @@ function HomePage() {
       <TestimonialsSection />
       <FaqSection />
       <CtaSection />
+      <ChatWidget />
     </PageShell>
   );
 }
-
-
 
 function ServicesSection() {
   return (
@@ -195,7 +194,6 @@ function WhySection() {
           Geen accountmanagers, geen wachtrijen. Je praat direct met de mensen die ontwerpen en
           bouwen. Daardoor gaat het sneller en blijft het scherp.
         </p>
-
       </div>
     </section>
   );
