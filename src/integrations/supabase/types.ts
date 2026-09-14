@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      chat_leads: {
+        Row: {
+          budget: string | null
+          company: string | null
+          conversation: Json
+          created_at: string
+          email: string
+          goal: string | null
+          has_website: string | null
+          id: string
+          label: string | null
+          name: string
+          notes: string | null
+          phone: string | null
+          score: number | null
+          service: string | null
+          status: string
+          timeline: string | null
+          website_url: string | null
+        }
+        Insert: {
+          budget?: string | null
+          company?: string | null
+          conversation?: Json
+          created_at?: string
+          email: string
+          goal?: string | null
+          has_website?: string | null
+          id?: string
+          label?: string | null
+          name: string
+          notes?: string | null
+          phone?: string | null
+          score?: number | null
+          service?: string | null
+          status?: string
+          timeline?: string | null
+          website_url?: string | null
+        }
+        Update: {
+          budget?: string | null
+          company?: string | null
+          conversation?: Json
+          created_at?: string
+          email?: string
+          goal?: string | null
+          has_website?: string | null
+          id?: string
+          label?: string | null
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          score?: number | null
+          service?: string | null
+          status?: string
+          timeline?: string | null
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       contact_requests: {
         Row: {
           company: string | null
